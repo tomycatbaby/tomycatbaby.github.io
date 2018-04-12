@@ -4,17 +4,27 @@
 
     
   <url>
-    <loc>https://tomycatbaby.github.io/2018/04/11/hello-world/</loc>
-    <lastmod>2018-04-11T08:36:50.069Z</lastmod>
+    <loc>https://tomycatbaby.github.io/2018/04/01/next/</loc>
+    <lastmod>2018-04-12T09:26:47.736Z</lastmod>
     <data>
         <display>
-        <title>Hello World</title>
-        <pubTime>2018-04-11T08:36:50.069Z</pubTime>
+        <title>Hexo之NexT主题搭建博客踩过的坑</title>
+        <pubTime>2018-04-01T07:39:31.000Z</pubTime>
         
+        <tag>nodejs</tag>
+         
+        <tag>hexo</tag>
+         
          
            
+             
+              <breadCrumb title="hexo" url="https://tomycatbaby.github.io/categories/hexo/"/>
+          
         </display>
     </data>
     </url>
 
+    
+    
+    
 </urlset>
