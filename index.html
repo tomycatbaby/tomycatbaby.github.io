@@ -282,6 +282,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/04/17/timesOfInteger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zufeng Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/hg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白天还是黑夜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/17/timesOfInteger/" itemprop="url">整数中1出现的次数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T15:38:33+08:00">
+                2018-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数</p>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<p>按照数学的排列组合思路来解，数字1位于不同的位置，共有多少种排列，包括重复的排列。<br>1、首先拿到一个整数，有m位，数字首位为s，则0~99..99（m-1个9）这个区间1出现的次数是sum=(m-1)*10^(m-2)（1的重复排列）；<br>2、接下来count=s*sum(以2345为例，m为4，0~999区间1出现的次数为1的重复排列3*10*10=300，count=2*300=600)，统计的是后m-1位中1的重复排列与首位排列相乘；<br>3、后面如果首位s大于1，就加上10^(m-1)(以2345例子就加上1000，count=600+1000=1600)；<br>               s等于1，就加上划去首位1的数再加上1（以1345例子看就是345+1，count+=346）<br>4、接下来就是递归了，我就不赘述了，看代码。</p>
+<blockquote>
+<p>详细代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int NumberOf1Between1AndN_Solution(int n) &#123;</span><br><span class="line">        if(n==0)</span><br><span class="line">            return 0;</span><br><span class="line">        else if(n&lt;10)</span><br><span class="line">            return 1;</span><br><span class="line">        int count = 0;</span><br><span class="line">        int length = test(n)-1;//长度减一</span><br><span class="line">        int divisor = (int) Math.pow(10,length);//除数</span><br><span class="line">        int y = n%divisor;//余数</span><br><span class="line">        int l = n/divisor;//数字首位</span><br><span class="line">		int sum = (int)(length*Math.pow(10,length-1));</span><br><span class="line">        count = l*sum;</span><br><span class="line">        if(l&gt;1)</span><br><span class="line">            count+=divisor;</span><br><span class="line">        else if(l==1)</span><br><span class="line">            count=count+y+1;</span><br><span class="line">        return count+NumberOf1Between1AndN_Solution(y);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    public int test(int n)&#123;</span><br><span class="line">        String str = String.valueOf(n);</span><br><span class="line">        char[]chars = str.toCharArray();</span><br><span class="line">        return chars.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/04/01/next/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -484,7 +633,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -495,7 +644,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -506,7 +655,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
