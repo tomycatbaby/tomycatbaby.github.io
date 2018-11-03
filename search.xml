@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring Boot 入门第一篇]]></title>
+    <url>%2F2018%2F10%2F28%2Fspringboot%2F</url>
+    <content type="text"><![CDATA[很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。 入门第一天构建maven项目1、访问http://start.spring.io/ ,Spring提供自动构建demo项目，可以选择利用maven或者gradle构建项目，我选择的是maven2、maven项目开发结构一般是 src/main/java 程序开发以及主程序入口 src/main/resources 配置文件 src/test/java 测试程序 至此一个项目就可以跑起来了 引入Web模块1、添加web依赖1234&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; 2、编写一个controller1234567@RestControllerpublic class HelloWorldController &#123; @RequestMapping(&quot;/hello&quot;) public String index() &#123; return &quot;Hello World&quot;; &#125;&#125; @RestController注解作用是输出json格式数据3、现在运行项目，打开浏览器，输入http://localhost:8080/hello ,就可以看到你的输出了 Spring Boot单元测试打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。12345678910111213141516@RunWith(SpringRunner.class)@SpringBootTestpublic class HelloWorldControlerTests &#123; private MockMvc mvc; @Before public void setUp() throws Exception &#123; mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build(); &#125; @Test public void getHello() throws Exception &#123; mvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).accept(MediaType.APPLICATION_JSON)) .andExpect(MockMvcResultMatchers.status().isOk()) .andDo(MockMvcResultHandlers.print()) .andReturn(); &#125;&#125;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[整数中1出现的次数]]></title>
     <url>%2F2018%2F04%2F17%2FtimesOfInteger%2F</url>
     <content type="text"><![CDATA[求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数 思路 按照数学的排列组合思路来解，数字1位于不同的位置，共有多少种排列，包括重复的排列。1、首先拿到一个整数，有m位，数字首位为s，则0~99..99（m-1个9）这个区间1出现的次数是sum=(m-1)*10^(m-2)（1的重复排列）；2、接下来count=s*sum(以2345为例，m为4，0~999区间1出现的次数为1的重复排列3*10*10=300，count=2*300=600)，统计的是后m-1位中1的重复排列与首位排列相乘；3、后面如果首位s大于1，就加上10^(m-1)(以2345例子就加上1000，count=600+1000=1600)； s等于1，就加上划去首位1的数再加上1（以1345例子看就是345+1，count+=346）4、接下来就是递归了，我就不赘述了，看代码。 详细代码 12345678910111213141516171819202122232425262728import java.util.HashMap;import java.util.Map;public class Solution &#123; public int NumberOf1Between1AndN_Solution(int n) &#123; if(n==0) return 0; else if(n&lt;10) return 1; int count = 0; int length = test(n)-1;//长度减一 int divisor = (int) Math.pow(10,length);//除数 int y = n%divisor;//余数 int l = n/divisor;//数字首位 int sum = (int)(length*Math.pow(10,length-1)); count = l*sum; if(l&gt;1) count+=divisor; else if(l==1) count=count+y+1; return count+NumberOf1Between1AndN_Solution(y); &#125; public int test(int n)&#123; String str = String.valueOf(n); char[]chars = str.toCharArray(); return chars.length; &#125;&#125;]]></content>
