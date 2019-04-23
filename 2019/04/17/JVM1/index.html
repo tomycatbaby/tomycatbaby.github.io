@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta name="description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM日记(一)">
 <meta property="og:url" content="https://tomycatbaby.github.io/2019/04/17/JVM1/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta property="og:description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T14:23:02.000Z">
+<meta property="og:updated_time" content="2019-04-23T12:55:55.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM日记(一)">
-<meta name="twitter:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta name="twitter:description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机">
 
 
 
@@ -373,7 +373,10 @@
       
 
       
-        
+        <h1 id="Java虚拟机第一篇"><a href="#Java虚拟机第一篇" class="headerlink" title="Java虚拟机第一篇"></a>Java虚拟机第一篇</h1><p>熟读《深入理解java虚拟机》，将自己的所学所感记录下来</p>
+<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区</p>
+<h3 id="虚拟机栈和本地方法栈"><a href="#虚拟机栈和本地方法栈" class="headerlink" title="虚拟机栈和本地方法栈"></a>虚拟机栈和本地方法栈</h3><p>虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的时候都会创建一个栈帧(stack frame)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每个方法从调用到完成就是一个栈帧在虚拟机栈中入栈到出栈的过程。<br>    大多数程序员所认知的堆和栈就是JVM的全部，而所指的栈就是虚拟机栈了，或者可以说是虚拟机栈的局部变量表部分。局部变量表存放了编译器可知的各种数据类型（java的8大基本数据类型），对象引用类型（它不等同于对象本身，可能是一个指向对象的指针或者是指向一个代表对象的句柄或其他于此对象相关的位置）和returnAddress类型（指向一条字节码指令的地址）。<br>    其中64位长度的long和double类型的数据会占用两个局部变量空间，其余数据类型只占用一个。局部变量表所需的内存空间在编译期间完成匹配，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。<br>    在java虚拟机规范中，对这个区域定义了两种异常情况：如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈可以动态扩展。如果扩展时无法申请到足够的内存，就会paoch抛出OutOfMemoryError异常。<br>    本地方法栈和虚拟机栈所发挥的作用是非常相似的，他们之间的区别是本地方法栈是为native方法服务的</p>
+
       
     </div>
     
@@ -461,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -548,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java虚拟机第一篇"><span class="nav-number">1.</span> <span class="nav-text">Java虚拟机第一篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈和本地方法栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">虚拟机栈和本地方法栈</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
