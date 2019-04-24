@@ -1,100 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>jvm</title>
-      <link href="/2019/04/23/jvm/"/>
-      <url>/2019/04/23/jvm/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    <entry>
-      <title>JVM日记(一)</title>
-      <link href="/2019/04/17/JVM1/"/>
-      <url>/2019/04/17/JVM1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Java虚拟机第一篇"><a href="#Java虚拟机第一篇" class="headerlink" title="Java虚拟机第一篇"></a>Java虚拟机第一篇</h1><p>熟读《深入理解java虚拟机》，将自己的所学所感记录下来</p><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区</p><h3 id="虚拟机栈和本地方法栈"><a href="#虚拟机栈和本地方法栈" class="headerlink" title="虚拟机栈和本地方法栈"></a>虚拟机栈和本地方法栈</h3><p>虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的时候都会创建一个栈帧(stack frame)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每个方法从调用到完成就是一个栈帧在虚拟机栈中入栈到出栈的过程。<br>    大多数程序员所认知的堆和栈就是JVM的全部，而所指的栈就是虚拟机栈了，或者可以说是虚拟机栈的局部变量表部分。局部变量表存放了编译器可知的各种数据类型（java的8大基本数据类型），对象引用类型（它不等同于对象本身，可能是一个指向对象的指针或者是指向一个代表对象的句柄或其他于此对象相关的位置）和returnAddress类型（指向一条字节码指令的地址）。<br>    其中64位长度的long和double类型的数据会占用两个局部变量空间，其余数据类型只占用一个。局部变量表所需的内存空间在编译期间完成匹配，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。<br>    在java虚拟机规范中，对这个区域定义了两种异常情况：如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈可以动态扩展。如果扩展时无法申请到足够的内存，就会paoch抛出OutOfMemoryError异常。<br>    本地方法栈和虚拟机栈所发挥的作用是非常相似的，他们之间的区别是本地方法栈是为native方法服务的</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    <entry>
-      <title>Spring Boot 入门第一篇</title>
-      <link href="/2018/10/28/springboot/"/>
-      <url>/2018/10/28/springboot/</url>
-      
-        <content type="html"><![CDATA[<p>很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。<br>Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。</p><h2 id="入门第一天"><a href="#入门第一天" class="headerlink" title="入门第一天"></a>入门第一天</h2><h3 id="构建maven项目"><a href="#构建maven项目" class="headerlink" title="构建maven项目"></a>构建maven项目</h3><p>1、访问<a href="http://start.spring.io/" target="_blank" rel="noopener">http://start.spring.io/</a> ,Spring提供自动构建demo项目，可以选择利用maven或者gradle构建项目，我选择的是maven<br>2、maven项目开发结构一般是</p><ul><li>src/main/java  程序开发以及主程序入口</li><li>src/main/resources 配置文件</li><li>src/test/java  测试程序</li></ul><p>至此一个项目就可以跑起来了</p><h3 id="引入Web模块"><a href="#引入Web模块" class="headerlink" title="引入Web模块"></a>引入Web模块</h3><p>1、添加web依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p><p>2、编写一个controller<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloWorldController &#123;</span><br><span class="line">    @RequestMapping(&quot;/hello&quot;)</span><br><span class="line">    public String index() &#123;</span><br><span class="line">        return &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>@RestController注解作用是输出json格式数据<br>3、现在运行项目，打开浏览器，输入<a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a> ,就可以看到你的输出了</p><h3 id="Spring-Boot单元测试"><a href="#Spring-Boot单元测试" class="headerlink" title="Spring Boot单元测试"></a>Spring Boot单元测试</h3><p>打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class HelloWorldControlerTests &#123;</span><br><span class="line">    private MockMvc mvc;</span><br><span class="line">    @Before</span><br><span class="line">    public void setUp() throws Exception &#123;</span><br><span class="line">        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void getHello() throws Exception &#123;</span><br><span class="line">    mvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).accept(MediaType.APPLICATION_JSON))</span><br><span class="line">                .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">                .andDo(MockMvcResultHandlers.print())</span><br><span class="line">                .andReturn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title><![CDATA[jvm]]></title>
+    <url>%2F2019%2F04%2F23%2Fjvm%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[JVM日记(一)]]></title>
+    <url>%2F2019%2F04%2F17%2FJVM1%2F</url>
+    <content type="text"><![CDATA[Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 1.虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的时候都会创建一个栈帧(stackframe)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每个方法从调用到完成就是一个栈帧在虚拟机栈中入栈到出栈的过程。 大多数程序员所认知的堆和栈就是JVM的全部，而所指的栈就是虚拟机栈了，或者可以说是虚拟机栈的局部变量表部分。局部变量表存放了编译器可知的各种数据类型（java的8大基本数据类型），对象引用类型（它不等同于对象本身，可能是一个指向对象的指针或者是指向一个代表对象的句柄或其他于此对象相关的位置）和returnAddress类型（指向一条字节码指令的地址）。 其中64位长度的long和double类型的数据会占用两个局部变量空间，其余数据类型只占用一个。局部变量表所需的内存空间在编译期间完成匹配，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。 在java虚拟机规范中，对这个区域定义了两种异常情况：如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈可以动态扩展。如果扩展时无法申请到足够的内存，就会抛出抛出OutOfMemoryError异常。 本地方法栈和虚拟机栈所发挥的作用是非常相似的，他们之间的区别是本地方法栈是为native方法服务的。 2.程序计数器程序计数器是一块较小的内存空间，由线程自身维护，我们可以将它看作是当前线程所执行的字节码的行号指示器。由于Java的多线程实际上是由线程轮流切换并分配处理器时间片来实现的，只是切换很快就让人以为是并发的。因此，为了线程切换后能够回到原来的位置，每条线程都需要有一个独立的程序计数器。如果线程正在执行的是一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址；如果执行的是Native方法，这个计数器值则为空。此内存区域是java虚拟机规范中唯一一个不会存在OutOfMemoryError。 3.Java堆Java堆的唯一目的是分配对象实例，几乎所有的对象实例都在这里分配内存，java规范的定义是：所有对象实例和数组都在堆上分配内存，但是随着JIT编译器的发展和逃逸分析技术的逐渐成熟，栈上分配、标量替换优化技术将会导致一些变化。 4.方法区方法区存放的是已被虚拟机加载的类信息，常量，静态变量、即时编译器编译后的代码等数据。虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做非堆，目的是与堆区分开来。对于习惯在Hotspot虚拟机上开发、部署程序的人来说，很多人愿意把方法区称为“永久代”，本质上两者并不等价，仅仅是因为HotSpot虚拟机的设计团队选择把GC分代收集扩展至方法区，或者说使用永久代实现方法区而已，便于HotSpot收集器管理这部分内存。 5.运行时常量池运行时常量池是方法区的一部分，Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。运行时常量池对于Class文件常量池的另一个重要特性是具备动态特性，Java语言并不要求常量只会在编译期生成，也就是并非预置入Class文件中常量池的内容才能进入方法区常量池，运行期间的例子就是String的intern()方法 6.直接内存直接内存并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。但是这部分的频繁使用也会导致OutOfMemoryError。在jdk1.4中加入了NIO（NewInput/Output）类，引入了一种基于通道与缓冲区的I/O方式，它可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场合中显著提升性能，因为避免了在Java堆和Native堆中来回复制数据。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring Boot 入门第一篇]]></title>
+    <url>%2F2018%2F10%2F28%2Fspringboot%2F</url>
+    <content type="text"><![CDATA[很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。 入门第一天构建maven项目1、访问http://start.spring.io/ ,Spring提供自动构建demo项目，可以选择利用maven或者gradle构建项目，我选择的是maven2、maven项目开发结构一般是 src/main/java 程序开发以及主程序入口 src/main/resources 配置文件 src/test/java 测试程序 至此一个项目就可以跑起来了 引入Web模块1、添加web依赖1234&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; 2、编写一个controller1234567@RestControllerpublic class HelloWorldController &#123; @RequestMapping(&quot;/hello&quot;) public String index() &#123; return &quot;Hello World&quot;; &#125;&#125; @RestController注解作用是输出json格式数据3、现在运行项目，打开浏览器，输入http://localhost:8080/hello ,就可以看到你的输出了 Spring Boot单元测试打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。12345678910111213141516@RunWith(SpringRunner.class)@SpringBootTestpublic class HelloWorldControlerTests &#123; private MockMvc mvc; @Before public void setUp() throws Exception &#123; mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build(); &#125; @Test public void getHello() throws Exception &#123; mvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).accept(MediaType.APPLICATION_JSON)) .andExpect(MockMvcResultMatchers.status().isOk()) .andDo(MockMvcResultHandlers.print()) .andReturn(); &#125;&#125;]]></content>
       <categories>
-          
-          <category> Java </category>
-          
+        <category>Java</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Spring Boot </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>整数中1出现的次数</title>
-      <link href="/2018/04/17/timesOfInteger/"/>
-      <url>/2018/04/17/timesOfInteger/</url>
-      
-        <content type="html"><![CDATA[<p><div><br>    <center><br>        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=552001753&auto=0&height=66"></iframe><br>    </center><br></div><br>求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数</p><blockquote><p>思路</p></blockquote><p>按照数学的排列组合思路来解，数字1位于不同的位置，共有多少种排列，包括重复的排列。<br>1、首先拿到一个整数，有m位，数字首位为s，则0~99..99（m-1个9）这个区间1出现的次数是sum=(m-1)*10^(m-2)（1的重复排列）；<br>2、接下来count=s*sum(以2345为例，m为4，0~999区间1出现的次数为1的重复排列3*10*10=300，count=2*300=600)，统计的是后m-1位中1的重复排列与首位排列相乘；<br>3、后面如果首位s大于1，就加上10^(m-1)(以2345例子就加上1000，count=600+1000=1600)；<br>               s等于1，就加上划去首位1的数再加上1（以1345例子看就是345+1，count+=346）<br>4、接下来就是递归了，我就不赘述了，看代码。</p><blockquote><p>详细代码</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int NumberOf1Between1AndN_Solution(int n) &#123;</span><br><span class="line">        if(n==0)</span><br><span class="line">            return 0;</span><br><span class="line">        else if(n&lt;10)</span><br><span class="line">            return 1;</span><br><span class="line">        int count = 0;</span><br><span class="line">        int length = test(n)-1;//长度减一</span><br><span class="line">        int divisor = (int) Math.pow(10,length);//除数</span><br><span class="line">        int y = n%divisor;//余数</span><br><span class="line">        int l = n/divisor;//数字首位</span><br><span class="line">int sum = (int)(length*Math.pow(10,length-1));</span><br><span class="line">        count = l*sum;</span><br><span class="line">        if(l&gt;1)</span><br><span class="line">            count+=divisor;</span><br><span class="line">        else if(l==1)</span><br><span class="line">            count=count+y+1;</span><br><span class="line">        return count+NumberOf1Between1AndN_Solution(y);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    public int test(int n)&#123;</span><br><span class="line">        String str = String.valueOf(n);</span><br><span class="line">        char[]chars = str.toCharArray();</span><br><span class="line">        return chars.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+      <tags>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[整数中1出现的次数]]></title>
+    <url>%2F2018%2F04%2F17%2FtimesOfInteger%2F</url>
+    <content type="text"><![CDATA[求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数 思路 按照数学的排列组合思路来解，数字1位于不同的位置，共有多少种排列，包括重复的排列。1、首先拿到一个整数，有m位，数字首位为s，则0~99..99（m-1个9）这个区间1出现的次数是sum=(m-1)*10^(m-2)（1的重复排列）；2、接下来count=s*sum(以2345为例，m为4，0~999区间1出现的次数为1的重复排列3*10*10=300，count=2*300=600)，统计的是后m-1位中1的重复排列与首位排列相乘；3、后面如果首位s大于1，就加上10^(m-1)(以2345例子就加上1000，count=600+1000=1600)； s等于1，就加上划去首位1的数再加上1（以1345例子看就是345+1，count+=346）4、接下来就是递归了，我就不赘述了，看代码。 详细代码 12345678910111213141516171819202122232425262728import java.util.HashMap;import java.util.Map;public class Solution &#123; public int NumberOf1Between1AndN_Solution(int n) &#123; if(n==0) return 0; else if(n&lt;10) return 1; int count = 0; int length = test(n)-1;//长度减一 int divisor = (int) Math.pow(10,length);//除数 int y = n%divisor;//余数 int l = n/divisor;//数字首位 int sum = (int)(length*Math.pow(10,length-1)); count = l*sum; if(l&gt;1) count+=divisor; else if(l==1) count=count+y+1; return count+NumberOf1Between1AndN_Solution(y); &#125; public int test(int n)&#123; String str = String.valueOf(n); char[]chars = str.toCharArray(); return chars.length; &#125;&#125;]]></content>
       <categories>
-          
-          <category> 算法 </category>
-          
+        <category>算法</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Hexo之NexT主题搭建博客踩过的坑</title>
-      <link href="/2018/04/01/next/"/>
-      <url>/2018/04/01/next/</url>
-      
-        <content type="html"><![CDATA[<p><div><br>    <center><br>        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=863046037&auto=0&height=66"></iframe><br>    </center><br></div><br>hexo+github搭建博客，自己也是拾前人牙慧，花了一天时间解决各种问题，本来很简单的问题也是在摸索中花费了大量时间，想起来就很搞笑，不过到底是解决了，好了，想要去看比较详细的过程就去: <a href="http://volcfamily.cn/2016/10/03/Hexo%E4%B9%8BNexT%E4%B8%BB%E9%A2%98%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">VOLC</a>这个博客吧，写的够详细了，下面写我踩过的坑吧。</p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="1-图标问题"><a href="#1-图标问题" class="headerlink" title="1.图标问题"></a>1.图标问题</h3><p>新版的hexo不需要在menu_icons中用key-value方式为menu添加图标，在菜单项menu（名称和链接）加 || FontAwesome icon的name</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / ||home</span><br><span class="line">  categories: /categories ||th</span><br><span class="line">  archives: /archives ||archive</span><br><span class="line">  tags: /tags ||tags</span><br><span class="line">  message: /message ||external-link  </span><br><span class="line">  about: /about ||user</span><br><span class="line">  #commonweal: /404.html</span><br><span class="line"></span><br><span class="line"># Enable/Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure><h3 id="2-头像问题"><a href="#2-头像问题" class="headerlink" title="2.头像问题"></a>2.头像问题</h3><p>在blog/source文件夹下新建img文件夹，将你的头像图片放进去，在站点文件_config.yml中修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 设置头像</span><br><span class="line">avatar: img/hg.jpeg</span><br></pre></td></tr></table></figure><h3 id="3-在博文中添加图片"><a href="#3-在博文中添加图片" class="headerlink" title="3.在博文中添加图片"></a>3.在博文中添加图片</h3><p>1.把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>2.在你的hexo目录下执行这样一句话npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件<br>3 最后在xxxx.md中想引入图片时，先把图片复制到source/_posts/xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![你想输入的替代文字](xxxx/图片名.jpg)</span><br></pre></td></tr></table></figure><h3 id="4-本地项目托管到github"><a href="#4-本地项目托管到github" class="headerlink" title="4.本地项目托管到github"></a>4.本地项目托管到github</h3><p>首先在你的github中new一个新的代码仓库，name：{your blog’s name}.github.io</p><blockquote><p>修改站点文件</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:tomycatbaby/tomycatbaby.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><blockquote><p>验证是否能否连接到github<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure></p></blockquote><p>成功后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi zhangsan! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p><blockquote><p>上传代码 中间会输入github密码</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -d</span><br></pre></td></tr></table></figure><blockquote><p>成功后就可以用 <a href="http://tomycatbaby.github.io">http://tomycatbaby.github.io</a> 访问了</p></blockquote><p><img src="/2018/04/01/next/1.png" alt="你想输入的替代文字"></p>]]></content>
-      
-      
+      <tags>
+        <tag>剑指offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo之NexT主题搭建博客踩过的坑]]></title>
+    <url>%2F2018%2F04%2F01%2Fnext%2F</url>
+    <content type="text"><![CDATA[hexo+github搭建博客，自己也是拾前人牙慧，花了一天时间解决各种问题，本来很简单的问题也是在摸索中花费了大量时间，想起来就很搞笑，不过到底是解决了，好了，想要去看比较详细的过程就去: VOLC这个博客吧，写的够详细了，下面写我踩过的坑吧。 遇到的问题1.图标问题新版的hexo不需要在menu_icons中用key-value方式为menu添加图标，在菜单项menu（名称和链接）加 || FontAwesome icon的name 123456789101112menu: home: / ||home categories: /categories ||th archives: /archives ||archive tags: /tags ||tags message: /message ||external-link about: /about ||user #commonweal: /404.html# Enable/Disable menu icons.menu_icons: enable: true 2.头像问题在blog/source文件夹下新建img文件夹，将你的头像图片放进去，在站点文件_config.yml中修改 12# 设置头像avatar: img/hg.jpeg 3.在博文中添加图片1.把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true2.在你的hexo目录下执行这样一句话npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件3 最后在xxxx.md中想引入图片时，先把图片复制到source/_posts/xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片： 1![你想输入的替代文字](xxxx/图片名.jpg) 4.本地项目托管到github首先在你的github中new一个新的代码仓库，name：{your blog’s name}.github.io 修改站点文件 123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: git@github.com:tomycatbaby/tomycatbaby.github.io.git branch: master 验证是否能否连接到github1$ ssh -T git@github.com 成功后1Hi zhangsan! You&apos;ve successfully authenticated, but GitHub does not provide shell access. 上传代码 中间会输入github密码 1hexo -d 成功后就可以用 http://tomycatbaby.github.io 访问了]]></content>
       <categories>
-          
-          <category> hexo </category>
-          
+        <category>hexo</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> nodejs </tag>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>nodejs</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
