@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jvm," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 1.虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚">
+<meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM日记(一)">
 <meta property="og:url" content="https://tomycatbaby.github.io/2019/04/17/JVM1/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
 <meta property="og:description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 1.虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-24T12:52:12.438Z">
+<meta property="og:updated_time" content="2019-04-30T09:06:32.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM日记(一)">
 <meta name="twitter:description" content="Java虚拟机第一篇熟读《深入理解java虚拟机》，将自己的所学所感记录下来 运行时数据区根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区 1.虚拟机栈和本地方法栈虚拟机栈是线程隔离的数据区，理所当然它的生命周期随着线程的创建而产生，线程的销毁而终止。虚">
@@ -346,6 +347,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -381,6 +404,52 @@
 <h3 id="4-方法区"><a href="#4-方法区" class="headerlink" title="4.方法区"></a>4.方法区</h3><p>方法区存放的是已被虚拟机加载的<code>类信息</code>，<code>常量</code>，<code>静态变量</code>、<code>即时编译器编译后的代码</code>等数据。虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做<code>非堆</code>，目的是与堆区分开来。<br>对于习惯在Hotspot虚拟机上开发、部署程序的人来说，很多人愿意把方法区称为“<code>永久代</code>”，本质上两者并不等价，仅仅是因为HotSpot虚拟机的设计团队选择把GC分代收集扩展至方法区，或者说使用永久代实现方法区而已，便于HotSpot收集器管理这部分内存。</p>
 <h3 id="5-运行时常量池"><a href="#5-运行时常量池" class="headerlink" title="5.运行时常量池"></a>5.运行时常量池</h3><p>运行时常量池是方法区的一部分，Class文件中除了有类的<code>版本</code>、<code>字段</code>、<code>方</code>法、<code>接口</code>等描述信息外，还有一项是<code>常量池</code>，用于存放编译期生成的各种<code>字面量</code>和<code>符号引用</code>，这部分内容将在类加载后进入方法区的运行时常量池中存放。运行时常量池对于Class文件常量池的另一个重要特性是具备动态特性，Java语言并不要求常量只会在编译期生成，也就是并非预置入Class文件中常量池的内容才能进入方法区常量池，运行期间的例子就是<code>String</code>的<code>intern()</code>方法</p>
 <h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6.直接内存"></a>6.直接内存</h3><p>直接内存并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。但是这部分的频繁使用也会导致<code>OutOfMemoryError</code>。<br>在jdk1.4中加入了<code>NIO</code>（NewInput/Output）类，引入了一种基于通道与缓冲区的I/O方式，它可以使用<code>Native函数库</code>直接分配<code>堆外内存</code>，然后通过一个存储在Java堆中的<code>DirectByteBuffer对象</code>作为这块内存的引用进行操作。这样能在一些场合中显著提升性能，因为避免了在Java堆和Native堆中来回复制数据。</p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>怎样判断对象yisi已死，回收它的内存？</p>
+<p>###1.引用计数算法<br>给对象添加一个引用计数器，当有一个引用时+1，引用失效就-1.<br>优点：实现简单，判断效率高，在大部分情况下是一个不错的算法，著名的应用案列有微软公司的COM技术，Python语言，使用ActionScript3的FlashPlayer等。<br>缺点：很难解决对象的相互循环引用问题。</p>
+<h3 id="2-可达性分析算法"><a href="#2-可达性分析算法" class="headerlink" title="2.可达性分析算法"></a>2.可达性分析算法</h3><p>基本思路：通过一系列的称为“GCRoots”的对象作为起始点，从这些节点往下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连，则证明此对象无用。<br>在Java语言中，可作为GC Roots的对象包括下面几种：<br>1）、虚拟机栈中引用的对象<br>2）方法区中类静态变量属性引用的对象<br>3）方法区中常量的引用对象<br>4）本地方法栈中JNI引用的对象</p>
+<h3 id="3-再谈引用"><a href="#3-再谈引用" class="headerlink" title="3.再谈引用"></a>3.再谈引用</h3><p>无论是那种算法判断存活都与“引用”相关，所以为了将引用定义的更加清晰，以便于内存空间的管理，Java将引用定义了4种，强应用，软引用，弱引用，虚引用。这4种引用强度依次减弱</p>
+<blockquote>
+<ul>
+<li>强应用(Strong Reference)</li>
+<li>软引用(Soft Reference)</li>
+<li>弱引用(Weak Reference)</li>
+<li>虚引用(Phantom Reference)</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>强引用<br>强应用就是代码中普遍存在的写法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object o = new Object();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>软引用<br>软引用就是用来描述一些还有用但并非必须的对象，Java提供了SoftReference类来实现软引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object o = new Object();</span><br><span class="line">SoftReference&lt;Object&gt; sr = new SoftReference&lt;&gt;(o);</span><br><span class="line">Object object = sr.get();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>弱引用<br>弱引用也是用来描述非必须对象的，它的引用强度更弱一些，被弱引用关联的对象只能生存到下一次垃圾回收之前，Java提供了WeakReference类来实现若引用。使用方法和软引用一致。</p>
+</li>
+<li>虚引用<br>它是最弱的一种引用，它的存在不会影响对象的回收，也无法使用它来获取对象的实例，它存在的唯一目的是在与它关联的对象实例被回收的时候收到一个系统通知</li>
+</ul>
+<h2 id="回收方法区"><a href="#回收方法区" class="headerlink" title="回收方法区"></a>回收方法区</h2><p>永久代的垃圾回收主要有两个方面：废弃常量和无用的类。</p>
+<ul>
+<li>废弃常量<br>以常量池的字面量为例，假如<code>&quot;abc&quot;</code>字符串已经存在于常量池了，但是在当前系统中没有一个地方引用了这个常量，如果发生内存回收且有必要的话他就会被回收。</li>
+<li>无用的类<br>判断无用的类要同时满足以下3个条件<blockquote>
+<ul>
+<li>该类所有的实例都已经被回收，也就是Java堆中不存在该类的实例</li>
+<li>加载该类的ClassLoader已经被回收</li>
+<li>该类对应的java.lang.Class对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。<br>满足这些条件就有可能被虚拟机回收。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="Java分代收集"><a href="#Java分代收集" class="headerlink" title="Java分代收集"></a>Java分代收集</h2><p>###1.Java年轻代和年老代</p>
+<ul>
+<li><p>年轻代分为一个<code>Eden</code>区和两个<code>survivor</code>区（分别叫做<code>from</code>和<code>to</code>），比例一般为<code>Eden：survivor=8:1</code>，新new的对象都是分配在Eden区中（一些大对象特殊处理），经过第一次GC过后，如果对象依然被引用，那么就会移动到<code>survivor</code>区，对象在<code>survivor</code>区每多熬过一次<code>MonitorGC</code>，年龄就会增加一岁，当年龄达到一定时，会被移动到年老代中（Old区）。年轻代的对象大部分都是朝生夕死的，所以GC采用的是复制算法，复制算法就是将内存分为两块，一块用完了就将活着的对象移到另一块上面去，好处是不会产生内存碎片，缺点是会造成一半的内存浪费。</p>
+</li>
+<li><p>年老代：Old区<br>当年老代被塞满之后就会触发<code>Full GC</code>，非常耗时，Old区GC算法为标记-清除或者标记-整理算法。<br>标记-清除算法就是将内存还存活的对象标记，然后清除没有标记的对象，它存在两个问题，一是效率问题，标记和清除效率都不高，而是空间问题，清除之后会造成大量的空间碎片，就使得如果有比较大的对象没有连续空间分配就会再次触发GC。<br><code>标记-整理</code>算法和<code>标记-清除</code>算法的不同就是，所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+</li>
+<li><p>堆中分配很大的对象<br>所谓大对象，是指需要大量连续内存空间的Java对象，例如很长的数组，此种对象会直接进入老年代，而老年代虽然有很大的剩余空间，但是无法找到足够大的连续空间来分配给当前对象，此种情况就会触发JVM进行<code>Full GC</code><br>为了解决这个问题，CMS垃圾收集器提供了一个可配置的参数，即<code>-XX:+UseCMSCompactAtFullCollection</code>开关参数，用于在“享受”完Full GC服务之后额外免费赠送一个碎片整理的过程，内存整理的过程无法并发的，空间碎片问题没有了，但提顿时间不得不变长了，JVM设计者们还提供了另外一个参数 <code>-XX:CMSFullGCsBeforeCompaction</code>,这个参数用于设置在执行多少次不压缩的<code>FullGC</code>后,跟着来一次带压缩的</p>
+</li>
+<li><p><code>System.gc()</code>方法的调用<br>此方法的调用是建议JVM进行<code>Full GC</code>,虽然只是建议而非一定,但很多情况下它会触发 <code>Full GC</code>,从而增加Full GC的频率,也即增加了间歇性停顿的次数。强烈影响系建议能不使用此方法就别使用，让虚拟机自己去管理它的内存，可以通过<code>-XX:+ DisableExplicitGC</code>来禁止<code>RMI</code>调用<code>System.gc</code>。</p>
+</li>
+</ul>
 
       
     </div>
@@ -395,6 +464,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+        </div>
       
 
       
@@ -520,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -575,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java虚拟机第一篇"><span class="nav-number">1.</span> <span class="nav-text">Java虚拟机第一篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-虚拟机栈和本地方法栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.虚拟机栈和本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-程序计数器"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Java堆"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.Java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-方法区"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-运行时常量池"><span class="nav-number">1.1.5.</span> <span class="nav-text">5.运行时常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.1.6.</span> <span class="nav-text">6.直接内存</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java虚拟机第一篇"><span class="nav-number">1.</span> <span class="nav-text">Java虚拟机第一篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-虚拟机栈和本地方法栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.虚拟机栈和本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-程序计数器"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Java堆"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.Java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-方法区"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-运行时常量池"><span class="nav-number">1.1.5.</span> <span class="nav-text">5.运行时常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.1.6.</span> <span class="nav-text">6.直接内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">1.2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-可达性分析算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.可达性分析算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-再谈引用"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.再谈引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回收方法区"><span class="nav-number">1.3.</span> <span class="nav-text">回收方法区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java分代收集"><span class="nav-number">1.4.</span> <span class="nav-text">Java分代收集</span></a></li></ol></li></ol></div>
             
 
           </div>
