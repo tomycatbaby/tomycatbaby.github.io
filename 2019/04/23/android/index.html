@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Spring Boot," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
-<meta name="keywords" content="Spring Boot">
+<meta name="description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Boot 入门第一篇">
-<meta property="og:url" content="https://tomycatbaby.github.io/2018/10/28/springboot/index.html">
+<meta property="og:title" content="Android事件分发机制">
+<meta property="og:url" content="https://tomycatbaby.github.io/2019/04/23/android/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
+<meta property="og:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T05:48:32.000Z">
+<meta property="og:updated_time" content="2019-05-01T06:49:59.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Boot 入门第一篇">
-<meta name="twitter:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
+<meta name="twitter:title" content="Android事件分发机制">
+<meta name="twitter:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://tomycatbaby.github.io/2018/10/28/springboot/"/>
+  <link rel="canonical" href="https://tomycatbaby.github.io/2019/04/23/android/"/>
 
 
 
 
 
-  <title>Spring Boot 入门第一篇 | 白天还是黑夜</title>
+  <title>Android事件分发机制 | 白天还是黑夜</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/10/28/springboot/">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/04/23/android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zufeng Lu">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring Boot 入门第一篇</h1>
+          <h1 class="post-title" itemprop="name headline">Android事件分发机制</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T09:55:41+08:00">
-                2018-10-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T20:00:34+08:00">
+                2019-04-23
               </time>
             
 
@@ -346,28 +346,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -396,18 +374,18 @@
       
 
       
-        <p>很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。<br>Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。</p>
-<h2 id="入门第一天"><a href="#入门第一天" class="headerlink" title="入门第一天"></a>入门第一天</h2><h3 id="构建maven项目"><a href="#构建maven项目" class="headerlink" title="构建maven项目"></a>构建maven项目</h3><p>1、访问<a href="http://start.spring.io/" target="_blank" rel="noopener">http://start.spring.io/</a> ,Spring提供自动构建demo项目，可以选择利用maven或者gradle构建项目，我选择的是maven<br>2、maven项目开发结构一般是</p>
+        <p>View的事件分发机制是解决滑动冲突的基础。<br>首先要理解两个概念，<code>View</code>和<code>ViewGroup</code>，控件如<code>Button</code>，<code>TexiView</code>，<code>ImageView</code>等都继承自<code>View</code>父类，布局如<code>LinerLayout</code>，<code>RelativeLayout</code>等都继承自<code>ViewGroup</code>。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。</p>
+<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。</p>
+<p>然后我们看以下三个核心方法：</p>
+<blockquote>
 <ul>
-<li>src/main/java  程序开发以及主程序入口</li>
-<li>src/main/resources 配置文件</li>
-<li>src/test/java  测试程序</li>
+<li>public boolean dispatchTouchEvent(MotionEvent ev)<br>用来进行事件的分发。如果事件能够传递给当前的View，那么这个方法就一定会被调用，返回结果受当前View的onTouchEvent和下级的dispatchTouchEvent方法影响，表示是否消耗当前事件。</li>
+<li>public boolean onInterceptTouchEvent(MotionEvent event)<br>在dispatchTouchEvent方法内部调用，这个方法表示是否拦截某个事件，这个方法存在于父级的View中，也就是一般重写在ViewGroup中</li>
+<li>public boolean onTouchEvent(MotionEvent event)<br>在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件</li>
 </ul>
-<p>至此一个项目就可以跑起来了</p>
-<h3 id="引入Web模块"><a href="#引入Web模块" class="headerlink" title="引入Web模块"></a>引入Web模块</h3><p>1、添加web依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>2、编写一个controller<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloWorldController &#123;</span><br><span class="line">    @RequestMapping(&quot;/hello&quot;)</span><br><span class="line">    public String index() &#123;</span><br><span class="line">        return &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>@RestController注解作用是输出json格式数据<br>3、现在运行项目，打开浏览器，输入<a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a> ,就可以看到你的输出了</p>
-<h3 id="Spring-Boot单元测试"><a href="#Spring-Boot单元测试" class="headerlink" title="Spring Boot单元测试"></a>Spring Boot单元测试</h3><p>打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class HelloWorldControlerTests &#123;</span><br><span class="line">    private MockMvc mvc;</span><br><span class="line">    @Before</span><br><span class="line">    public void setUp() throws Exception &#123;</span><br><span class="line">        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void getHello() throws Exception &#123;</span><br><span class="line">    mvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).accept(MediaType.APPLICATION_JSON))</span><br><span class="line">                .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">                .andDo(MockMvcResultHandlers.print())</span><br><span class="line">                .andReturn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>用一段伪代码来表示三种方法的关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev)&#123;</span><br><span class="line">    boolean comsume = false；</span><br><span class="line">    if(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      consume = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    return consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当一个，<code>View</code>需要处理事件时，如果它设置了<code>OnTouchListener</code>，那么<code>OnTouchListener</code>中的<code>onTouch</code>方法被回调。这时事件如何处理还要看<code>onTouch</code>的返回值，如果返回<code>false</code>，则当前<code>View</code>的<code>onTouchEvent</code>方法会被调用；如果返回true，那么<code>onTouchEvent</code>方法将不会调用。由此可见，给View设置的<code>OnTouchListener</code>，其优先级比<code>onTouchEvent</code>要高。在<code>onTouchEvent</code>方法中，如果当前设置的有<code>onClickListener</code>，那么它的click方法会被调用，可以看出我们平时所用的<code>onClickListener</code>优先级最低，位于末端。<br>当一个点击事件产生后，它的传递过程遵循如下规则：<code>Activity</code>-&gt;<code>Window</code>-&gt;<code>View</code>,这里的View是<code>顶级View</code>，顶级View接收到事件后，会按照事件分发机制一步步向下分发事件。考虑一种情况，如果一个View的onTouchEvent返回false，那么它的父容器的<code>onTouchEvent</code>将会被调用，以此类推。如果所有的元素都不处理这个事件，那么最终这个事件会被传递给<code>Activity</code>处理，调用<code>Activity</code>的<code>onTouchEvent</code>方法。<br>关于事件分发机制，这里有一些结论：<br>（1）同一事件序列是指从手指接触屏幕的那一刻起，到手指离开屏幕，事件序列会经历down事件，以及数量不定的move事件，最后以up事件结束；<br>（2）正常情况下，一个事件序列只能被一个View拦截消耗；<br>（3）某个View一旦决定拦截，那么这一个事件序列只能由它自己处理，并且它的<code>onInterceptTouchEvent</code>方法<br>不会再被调用<br>（4）某个<code>View</code>一旦开始处理事件，如果它不消耗<code>ACTION_DOWN</code>事件（<code>onTouchEvent</code>返回了<code>false</code>），那么同一事件序列的其他事件都不会再交给它处理，并且事件将重新交由它的父元素去处理，即调用父元素的<code>onTouchEvent</code>。<br>（5）如果<code>View</code>不消耗除了<code>ACTION_DOWN</code>的其他事件，那么这个点击事件会消失，此时父元素的<code>onTouchEvent</code>并不会被调用，并且当前<code>View</code>可以持续收到后续事件。并且这些消失的点击事件会交给<code>Activity</code>处理。<br>（6）<code>ViewGroup</code>默认不会拦截任何事件。<br>（7）<code>View</code>没有<code>onInterceptTouchEvent</code>方法，一旦有事件传递给它就会调用它的<code>onTouchEvent</code>方法。<br>（8）<code>View</code>的<code>onTouchEvent</code>默认都会消耗事件，除非它是不可点击的（<code>clickable</code>和<code>longClickable</code>同时为<code>false</code>，<code>View</code>的<code>longClickable</code>默认为<code>false</code>）。<br>（9）<code>View</code>的<code>enable</code>属性不影响<code>onTouchEvent</code>的默认返回值。<br>（10）onClick会发生的前提是当前View是可点击的，并且它收到了down和up事件。<br>（11）事件传递过程都是由外向内的，通过<code>requestDisallowInterceptTouchEvent</code>方法可以在子元素中干预父元素的事件分发过程，但是<code>ACTION_DOWN</code>事件除外。<br><code>mInputEventConsistencyVerifier</code>变量是调试用的，不用理会。<br><code>onFilterTouchEventForSecurity()</code>表示是否要分发该触摸事件，具体可以看里面的源码，主要看是否该View是否被屏蔽了。<br><code>intercepted</code>变量标志Group是否拦截Touch事件的传递，会调用ViewGroup的<code>onInterceptTouchEvent</code>方法进行判定。</p>
 
       
     </div>
@@ -425,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -438,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/17/timesOfInteger/" rel="next" title="整数中1出现的次数">
-                <i class="fa fa-chevron-left"></i> 整数中1出现的次数
+              <a href="/2019/04/17/JVM1/" rel="next" title="JVM日记(一)">
+                <i class="fa fa-chevron-left"></i> JVM日记(一)
               </a>
             
           </div>
@@ -448,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/17/JVM1/" rel="prev" title="JVM日记(一)">
-                JVM日记(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/09/androidThread/" rel="prev" title="Android有哪些处理耗时任务的方式">
+                Android有哪些处理耗时任务的方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -502,17 +480,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -598,22 +567,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门第一天"><span class="nav-number">1.</span> <span class="nav-text">入门第一天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建maven项目"><span class="nav-number">1.1.</span> <span class="nav-text">构建maven项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入Web模块"><span class="nav-number">1.2.</span> <span class="nav-text">引入Web模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot单元测试"><span class="nav-number">1.3.</span> <span class="nav-text">Spring Boot单元测试</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

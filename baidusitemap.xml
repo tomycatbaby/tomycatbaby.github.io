@@ -4,8 +4,42 @@
 
     
   <url>
+    <loc>https://tomycatbaby.github.io/2019/05/09/androidThread/</loc>
+    <lastmod>2019-05-09T12:12:56.403Z</lastmod>
+    <data>
+        <display>
+        <title>Android有哪些处理耗时任务的方式</title>
+        <pubTime>2019-05-09T12:05:59.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tomycatbaby.github.io/2019/04/23/android/</loc>
+    <lastmod>2019-05-01T06:49:59.902Z</lastmod>
+    <data>
+        <display>
+        <title>Android事件分发机制</title>
+        <pubTime>2019-04-23T12:00:34.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tomycatbaby.github.io/2019/04/17/JVM1/</loc>
-    <lastmod>2019-04-30T09:08:54.433Z</lastmod>
+    <lastmod>2019-05-01T00:58:59.245Z</lastmod>
     <data>
         <display>
         <title>JVM日记(一)</title>
@@ -18,21 +52,6 @@
              
               <breadCrumb title="Java" url="https://tomycatbaby.github.io/categories/Java/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tomycatbaby.github.io/2019/04/23/jvm/</loc>
-    <lastmod>2019-04-23T12:00:34.343Z</lastmod>
-    <data>
-        <display>
-        <title>jvm</title>
-        <pubTime>2019-04-23T12:00:34.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
