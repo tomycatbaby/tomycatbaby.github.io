@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
+<meta name="description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。 入门第一天">
 <meta name="keywords" content="Spring Boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot 入门第一篇">
 <meta property="og:url" content="https://tomycatbaby.github.io/2018/10/28/springboot/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
+<meta property="og:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。 入门第一天">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T05:48:32.000Z">
+<meta property="og:updated_time" content="2019-05-09T12:33:07.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot 入门第一篇">
-<meta name="twitter:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不">
+<meta name="twitter:description" content="很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，现在开始从这个比较流行的技术Spring Boot开始吧。Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。 入门第一天">
 
 
 
@@ -396,15 +396,15 @@
       
 
       
-        <p>很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，明年准备跳槽回到Java开发的工作，现在开始从这个比较流行的技术Spring Boot开始吧。<br>Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。</p>
+        <p>很久没有学习Java开发相关知识了，由于现在的工作是Android开发，所以接触Android的东西很多，但是我还是对Java后台情有独钟，现在开始从这个比较流行的技术Spring Boot开始吧。<br>Spring Boot原以为只是一个J2EE框架，其实不是，它应该是一种微服务框架，通俗的讲Spring Boot就是将我们Spring的开发工作简化了，使开发人员不在对配置文件浪费时间了。</p>
 <h2 id="入门第一天"><a href="#入门第一天" class="headerlink" title="入门第一天"></a>入门第一天</h2><h3 id="构建maven项目"><a href="#构建maven项目" class="headerlink" title="构建maven项目"></a>构建maven项目</h3><p>1、访问<a href="http://start.spring.io/" target="_blank" rel="noopener">http://start.spring.io/</a> ,Spring提供自动构建demo项目，可以选择利用maven或者gradle构建项目，我选择的是maven<br>2、maven项目开发结构一般是</p>
 <ul>
 <li>src/main/java  程序开发以及主程序入口</li>
 <li>src/main/resources 配置文件</li>
-<li>src/test/java  测试程序</li>
+<li>src/test/java  测试程序<a id="more"></a>
+至此一个项目就可以跑起来了<h3 id="引入Web模块"><a href="#引入Web模块" class="headerlink" title="引入Web模块"></a>引入Web模块</h3>1、添加web依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>至此一个项目就可以跑起来了</p>
-<h3 id="引入Web模块"><a href="#引入Web模块" class="headerlink" title="引入Web模块"></a>引入Web模块</h3><p>1、添加web依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
 <p>2、编写一个controller<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloWorldController &#123;</span><br><span class="line">    @RequestMapping(&quot;/hello&quot;)</span><br><span class="line">    public String index() &#123;</span><br><span class="line">        return &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>@RestController注解作用是输出json格式数据<br>3、现在运行项目，打开浏览器，输入<a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a> ,就可以看到你的输出了</p>
 <h3 id="Spring-Boot单元测试"><a href="#Spring-Boot单元测试" class="headerlink" title="Spring Boot单元测试"></a>Spring Boot单元测试</h3><p>打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class HelloWorldControlerTests &#123;</span><br><span class="line">    private MockMvc mvc;</span><br><span class="line">    @Before</span><br><span class="line">    public void setUp() throws Exception &#123;</span><br><span class="line">        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void getHello() throws Exception &#123;</span><br><span class="line">    mvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).accept(MediaType.APPLICATION_JSON))</span><br><span class="line">                .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">                .andDo(MockMvcResultHandlers.print())</span><br><span class="line">                .andReturn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -542,7 +542,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -628,7 +628,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

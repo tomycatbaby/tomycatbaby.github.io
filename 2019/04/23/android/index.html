@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="白天还是黑夜">
 <meta property="og:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-01T06:49:59.902Z">
+<meta property="og:updated_time" content="2019-05-09T12:30:36.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发机制">
 <meta name="twitter:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
@@ -347,6 +347,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -375,8 +397,7 @@
 
       
         <p>View的事件分发机制是解决滑动冲突的基础。<br>首先要理解两个概念，<code>View</code>和<code>ViewGroup</code>，控件如<code>Button</code>，<code>TexiView</code>，<code>ImageView</code>等都继承自<code>View</code>父类，布局如<code>LinerLayout</code>，<code>RelativeLayout</code>等都继承自<code>ViewGroup</code>。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。</p>
-<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。</p>
-<p>然后我们看以下三个核心方法：</p>
+<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。<br><a id="more"></a><br>然后我们看以下三个核心方法：</p>
 <blockquote>
 <ul>
 <li>public boolean dispatchTouchEvent(MotionEvent ev)<br>用来进行事件的分发。如果事件能够传递给当前的View，那么这个方法就一定会被调用，返回结果受当前View的onTouchEvent和下级的dispatchTouchEvent方法影响，表示是否消耗当前事件。</li>
@@ -511,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -581,7 +602,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
