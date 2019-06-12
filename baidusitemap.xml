@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>https://tomycatbaby.github.io/2019/06/12/memory/</loc>
+    <lastmod>2019-06-12T07:23:44.412Z</lastmod>
+    <data>
+        <display>
+        <title>Android内存管理之内存抖动、内存泄露、内存溢出</title>
+        <pubTime>2019-06-12T07:19:43.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="https://tomycatbaby.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tomycatbaby.github.io/2019/05/09/androidThread/</loc>
-    <lastmod>2019-06-11T07:56:10.916Z</lastmod>
+    <lastmod>2019-06-11T08:03:48.093Z</lastmod>
     <data>
         <display>
         <title>Android有哪些处理耗时任务的方式</title>

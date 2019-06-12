@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="白天还是黑夜">
 <meta property="og:description" content="1、IntentServiceIntentService是继承并处理异步请求的一个类，在IntentService中有一个工作线程来处理耗时操作，启动方法和常规Service一样，不同的是它不需要我们手动控制或销毁，而且IntentService可以启动多次，而每一个耗时操作会以工作队列的方式在IntentService的onHandleIntent回调方法中执行，并且是串行执行，必须等待前一个执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T07:56:10.916Z">
+<meta property="og:updated_time" content="2019-06-11T08:03:48.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android有哪些处理耗时任务的方式">
 <meta name="twitter:description" content="1、IntentServiceIntentService是继承并处理异步请求的一个类，在IntentService中有一个工作线程来处理耗时操作，启动方法和常规Service一样，不同的是它不需要我们手动控制或销毁，而且IntentService可以启动多次，而每一个耗时操作会以工作队列的方式在IntentService的onHandleIntent回调方法中执行，并且是串行执行，必须等待前一个执">
@@ -396,7 +396,7 @@
       
 
       
-        <h3 id="1、IntentService"><a href="#1、IntentService" class="headerlink" title="1、IntentService"></a>1、IntentService</h3><p>IntentService是继承并处理异步请求的一个类，在IntentService中有一个工作线程来处理耗时操作，启动方法和常规Service一样，不同的是它不需要我们手动控制或销毁，而且IntentService可以启动多次，而每一个耗时操作会以工作队列的方式在IntentService的<code>onHandleIntent</code>回调方法中执行，并且是串行执行，必须等待前一个执行完成后才会执行下一个。<br>看源码<code>IntentService</code>实际上就是内部实现了一个<code>Handler</code>，我们知道每启动一次service，如果这个service已经存在就会调用onStartCommand，否则就先执行onCreate方法，在<code>onStartCommand</code>方法中默认会调用onStart方法，IntentService的<code>onStart</code>方法源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void onStart(@Nullable Intent intent, int startId) &#123;</span><br><span class="line">        Message msg = mServiceHandler.obtainMessage();</span><br><span class="line">        msg.arg1 = startId;</span><br><span class="line">        msg.obj = intent;</span><br><span class="line">        mServiceHandler.sendMessage(msg);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="1、IntentService"><a href="#1、IntentService" class="headerlink" title="1、IntentService"></a>1、IntentService</h3><p>IntentService是继承并处理异步请求的一个类，在IntentService中有一个工作线程来处理耗时操作，启动方法和常规Service一样，不同的是它不需要我们手动控制或销毁，而且IntentService可以启动多次，而每一个耗时操作会以工作队列的方式在IntentService的<code>onHandleIntent</code>回调方法中执行，并且是串行执行，必须等待前一个执行完成后才会执行下一个。<br>看源码<code>IntentService</code>实际上就是内部实现了一个<code>Handler</code>，我们知道每启动一次service，如果这个service已经存在就会调用onStartCommand，否则就先执行onCreate方法，在<code>onStartCommand</code>方法中默认会调用onStart方法，IntentService的<code>onStart</code>方法源码如下：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void onStart(@Nullable Intent intent, int startId) &#123;</span><br><span class="line">        Message msg = mServiceHandler.obtainMessage();</span><br><span class="line">        msg.arg1 = startId;</span><br><span class="line">        msg.obj = intent;</span><br><span class="line">        mServiceHandler.sendMessage(msg);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到在这个方法中会向自己的handler提交一条消息，然后我们看它的handler源码的handleMessage方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void handleMessage(Message msg) &#123;</span><br><span class="line">        onHandleIntent((Intent)msg.obj);</span><br><span class="line">        stopSelf(msg.arg1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>我们可以看到会调用<code>onHandleIntent</code>，然后执行完之后自动调用<code>stopself</code>。这就是我们使用<code>IntentService</code>默认必须实现它的<code>onHandleIntent</code>方法，而且它执行完成后会自动销毁的原因了。</p>
 <h3 id="2、Activity中的runOnUiThread（Runnable-runnable）"><a href="#2、Activity中的runOnUiThread（Runnable-runnable）" class="headerlink" title="2、Activity中的runOnUiThread（Runnable runnable）"></a>2、Activity中的runOnUiThread（Runnable runnable）</h3><p>runOnUiThread是Activity中独有的方法，可以实现与UI主线程的通信，那它是怎么通信的呢？<br>首先看这个方法的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public final void runOnUiThread(Runnable action) &#123;</span><br><span class="line">        if (Thread.currentThread() != mUiThread) &#123;</span><br><span class="line">            mHandler.post(action);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            action.run();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
@@ -459,6 +459,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/12/memory/" rel="prev" title="Android内存管理之内存抖动、内存泄露、内存溢出">
+                Android内存管理之内存抖动、内存泄露、内存溢出 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -539,7 +543,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
