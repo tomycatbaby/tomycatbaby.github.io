@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="白天还是黑夜">
 <meta property="og:description" content="内存抖动内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。2、自定义View的onDraw()，onMeasure()方法会多次调用，所以尽量不要在里面创建对象。3、当需要使用大量的B">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T07:16:28.187Z">
+<meta property="og:updated_time" content="2019-07-18T01:07:37.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android内存管理之内存抖动、内存泄露、内存溢出">
 <meta name="twitter:description" content="内存抖动内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。2、自定义View的onDraw()，onMeasure()方法会多次调用，所以尽量不要在里面创建对象。3、当需要使用大量的B">
@@ -410,7 +410,14 @@
 </ul>
 </blockquote>
 <p>Android Studio会对代码中可能出现内存泄露的地方会给出提示，能够避免很多常见的内存泄露。<br>对于第二种情况的内存泄露，我们一般是使用静态内部类+弱引用的方式去解决，handler不持有activity引用，而是通过弱引用去获得一个弱引用对象。<br>第三种情况有很多例子场景：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//线程匿名内部类</span><br><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">new AsyncTask&lt;Void, Void, Void&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected Void doInBackground(Void... params) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.execute();</span><br><span class="line">//线程写成静态内部类</span><br><span class="line">private static class MyThread implements Runnable &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        SystemClock.sleep(20000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>内存泄露是非常容易出现的，上面只是一些大多数场景，还有很多需要注意的地方，特别是一些框架、组件这样的内存泄露很容易忽视。查找内存泄露的方式也很多，如<code>LeakCanary</code>，还有<code>Android Studio3.0</code>自带的<br><code>Android Profiler</code>，熟练使用这些工具能够快速的帮助自己定位内存泄露，提高程序的性能。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Android关于内存的最佳实践</p>
+<blockquote>
+<ul>
+<li>Enum非常占用内存，因为枚举类型的每个属性值都是Object，每声明一个值都会创建内存以便能引用到这个对象，Android中使用@IntDef、@StringDef来替代枚举类型的使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Java 的 Enum 的实质是特殊单例的静态成员变量</span><br><span class="line">Enum 可以在编写器，编译器做到各种静态检查防呆</span><br><span class="line">Enum 在运行期，所有枚举类作为单例，全部加载到内存中</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>内存泄露是非常容易出现的，上面只是一些大多数场景，还有很多需要注意的地方，特别是一些框架、组件这样的内存泄露很容易忽视。查找内存泄露的方式也很多，如<code>LeakCanary</code>，还有<code>Android Studio3.0</code>自带的<br><code>Android Profiler</code>，熟练使用这些工具能够快速的帮助自己定位内存泄露，提高程序的性能。</p>
 
       
     </div>
@@ -534,7 +541,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

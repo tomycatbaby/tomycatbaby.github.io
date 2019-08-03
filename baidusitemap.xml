@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>https://tomycatbaby.github.io/2019/06/14/label/</loc>
-    <lastmod>2019-06-14T08:53:50.667Z</lastmod>
+    <loc>https://tomycatbaby.github.io/2019/07/03/handler/</loc>
+    <lastmod>2019-08-03T03:16:10.877Z</lastmod>
     <data>
         <display>
-        <title>Android标签</title>
-        <pubTime>2019-06-14T07:09:02.000Z</pubTime>
+        <title>关于Handler</title>
+        <pubTime>2019-07-03T03:09:30.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -25,11 +25,51 @@
     
   <url>
     <loc>https://tomycatbaby.github.io/2019/06/02/memory/</loc>
-    <lastmod>2019-06-14T07:16:28.187Z</lastmod>
+    <lastmod>2019-07-18T01:07:37.118Z</lastmod>
     <data>
         <display>
         <title>Android内存管理之内存抖动、内存泄露、内存溢出</title>
         <pubTime>2019-06-02T07:19:43.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="https://tomycatbaby.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tomycatbaby.github.io/2019/04/17/JVM1/</loc>
+    <lastmod>2019-07-10T11:54:56.309Z</lastmod>
+    <data>
+        <display>
+        <title>JVM日记(一)</title>
+        <pubTime>2019-04-17T14:23:00.000Z</pubTime>
+        
+        <tag>jvm</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="https://tomycatbaby.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tomycatbaby.github.io/2019/06/14/label/</loc>
+    <lastmod>2019-06-14T08:53:50.667Z</lastmod>
+    <data>
+        <display>
+        <title>Android标签</title>
+        <pubTime>2019-06-14T07:09:02.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -119,26 +159,6 @@
            
              
               <breadCrumb title="hexo" url="https://tomycatbaby.github.io/categories/hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tomycatbaby.github.io/2019/04/17/JVM1/</loc>
-    <lastmod>2019-05-09T12:30:47.589Z</lastmod>
-    <data>
-        <display>
-        <title>JVM日记(一)</title>
-        <pubTime>2019-04-17T14:23:00.000Z</pubTime>
-        
-        <tag>jvm</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://tomycatbaby.github.io/categories/Java/"/>
           
         </display>
     </data>
