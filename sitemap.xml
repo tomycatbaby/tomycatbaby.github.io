@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tomycatbaby.github.io/2019/04/17/JVM1/</loc>
+    
+    <lastmod>2019-12-09T08:19:03.417Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tomycatbaby.github.io/2019/07/03/handler/</loc>
     
     <lastmod>2019-08-03T03:16:10.877Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://tomycatbaby.github.io/2019/06/02/memory/</loc>
     
     <lastmod>2019-07-18T01:07:37.118Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomycatbaby.github.io/2019/04/17/JVM1/</loc>
-    
-    <lastmod>2019-07-10T11:54:56.309Z</lastmod>
     
   </url>
   
@@ -40,13 +40,6 @@
     <loc>https://tomycatbaby.github.io/2018/04/17/timesOfInteger/</loc>
     
     <lastmod>2019-05-09T12:47:12.672Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomycatbaby.github.io/2018/10/28/springboot/</loc>
-    
-    <lastmod>2019-05-09T12:33:07.275Z</lastmod>
     
   </url>
   
