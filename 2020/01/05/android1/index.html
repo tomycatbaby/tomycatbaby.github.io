@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
-<meta name="keywords" content="Android">
+<meta name="description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android事件分发机制">
-<meta property="og:url" content="https://tomycatbaby.github.io/2019/04/23/android/index.html">
+<meta property="og:title" content="Android的零碎知识点">
+<meta property="og:url" content="https://tomycatbaby.github.io/2020/01/05/android1/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
+<meta property="og:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T12:30:36.825Z">
+<meta property="og:updated_time" content="2020-03-25T06:42:34.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android事件分发机制">
-<meta name="twitter:description" content="View的事件分发机制是解决滑动冲突的基础。首先要理解两个概念，View和ViewGroup，控件如Button，TexiView，ImageView等都继承自View父类，布局如LinerLayout，RelativeLayout等都继承自ViewGroup。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。 首">
+<meta name="twitter:title" content="Android的零碎知识点">
+<meta name="twitter:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://tomycatbaby.github.io/2019/04/23/android/"/>
+  <link rel="canonical" href="https://tomycatbaby.github.io/2020/01/05/android1/"/>
 
 
 
 
 
-  <title>Android事件分发机制 | 白天还是黑夜</title>
+  <title>Android的零碎知识点 | 白天还是黑夜</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/04/23/android/">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2020/01/05/android1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zufeng Lu">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android事件分发机制</h1>
+          <h1 class="post-title" itemprop="name headline">Android的零碎知识点</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T20:00:34+08:00">
-                2019-04-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-05T14:24:57+08:00">
+                2020-01-05
               </time>
             
 
@@ -346,28 +346,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -396,17 +374,36 @@
       
 
       
-        <p>View的事件分发机制是解决滑动冲突的基础。<br>首先要理解两个概念，<code>View</code>和<code>ViewGroup</code>，控件如<code>Button</code>，<code>TexiView</code>，<code>ImageView</code>等都继承自<code>View</code>父类，布局如<code>LinerLayout</code>，<code>RelativeLayout</code>等都继承自<code>ViewGroup</code>。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。</p>
-<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。<br><a id="more"></a><br>然后我们看以下三个核心方法：</p>
-<blockquote>
+        <a id="more"></a>
+<h3 id="1、Android-项目中-assets-目录和-res-目录有什么区别"><a href="#1、Android-项目中-assets-目录和-res-目录有什么区别" class="headerlink" title="1、Android 项目中 assets 目录和 res 目录有什么区别"></a>1、Android 项目中 assets 目录和 res 目录有什么区别</h3><p>assets下可以新建子目录，res下的子目录不能再新建子目录<br>assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用<br>assets使用是需要用AssetManager取出输入流使用的</p>
+<h3 id="2、如何结束一个正在运行的线程"><a href="#2、如何结束一个正在运行的线程" class="headerlink" title="2、如何结束一个正在运行的线程"></a>2、如何结束一个正在运行的线程</h3><p>使用interrupted()方法打断线程的运行，不建议使用已遗弃的stop方法，因为stop的本质上是不安全的，用 Thread.stop 来终止线程将释放它已经锁定的所有监视器（作为沿堆栈向上传播的未检查 ThreadDeath 异常的一个自然后果）。如果以前受这些监视器保护的任何对象都处于一种不一致的状态，则损坏的对象将对其他线程可见，这有可能导致任意的行为。stop的许多使用都应由只修改某些变量以指示目标线程应该停止运行的代码来取代。目标线程应定期检查该变量，并且如果该变量指示它要停止运行，则从其运行方法依次返回。如果目标线程等待很长时间（例如基于一个条件变量），则应使用 interrupt 方法来中断该等待</p>
+<h3 id="3、如何获取某个-View-的大小并动态改变-View-的大小"><a href="#3、如何获取某个-View-的大小并动态改变-View-的大小" class="headerlink" title="3、如何获取某个 View 的大小并动态改变 View 的大小"></a>3、如何获取某个 View 的大小并动态改变 View 的大小</h3><p>LayoutParams动态改变view的大小</p>
+<h3 id="4、String、StringBuilder、StringBuffer-区别"><a href="#4、String、StringBuilder、StringBuffer-区别" class="headerlink" title="4、String、StringBuilder、StringBuffer 区别"></a>4、String、StringBuilder、StringBuffer 区别</h3><p>运行速度：StringBuilder&gt;StringBuffer&gt;String<br>线程安全：String，StringBuffer<br>非线程安全：StringBuilder<br>String是字符串常量，每次的修改会导致对象的不断创建和回收，所以它最慢<br>StringBuffer由于其中很多方法都是带有synchronize关键字的，所以它的速度比StringBuilder慢<br>String是不可变类，所以String是线程安全的<br>缓冲区区别：StringBuffer每次toString会直接使用toStringCache来构造一个字符串<br>StringBuilder则每次需要复制一次字符数组，然后构造一个字符串</p>
+<h3 id="5、泛型擦除"><a href="#5、泛型擦除" class="headerlink" title="5、泛型擦除"></a>5、泛型擦除</h3><p>修饰成员变量等类结构相关的泛型不会被擦除<br>Java的容器类泛型只对编译器有效，作为编码时的检验，编译为字节码后会自动将泛型去掉。</p>
+<h3 id="6、ArrayMap、HashMap、SparseArray-原理"><a href="#6、ArrayMap、HashMap、SparseArray-原理" class="headerlink" title="6、ArrayMap、HashMap、SparseArray 原理"></a>6、ArrayMap、HashMap、SparseArray 原理</h3><p>HashMap是Java的数据结构，ArrayMap和SparseArray是Android特有的类<br>HashMap是数组加链表的存储value的结构，利用key的hashcode与容量-1相与去算出位于数组哪个位置，hash冲突后就加到链表中，java8之前都是链表，java8之后链表长度大于7后自动转换成红黑树（O(lgn)），优点是查找速度更快，缺点是会增加大量内存使用。<br>SparseArray很简单粗暴，利用Int作为key。它保存两个数组，一个时Int类型的key数组，一个是Object类型的value数组，加入数据是先用二分查找去查找是否在key数组已经存在有这个相同的key，没有就新增，有就返回对应value的在数组中下标，然后替换，这个数据类的缺点是增删改查都会使用二分查找，不适用存储大量数据<br>ArrayMap和SparseArray类似，区别是它使用hash值存储在key数组中的，SparseArray是直接存储int在key数组中，缺点也是查找效率没HashMap高，它主要是提高内存效率。</p>
+<h3 id="7、Fragment-添加方式，add、replace、show-区别"><a href="#7、Fragment-添加方式，add、replace、show-区别" class="headerlink" title="7、Fragment 添加方式，add、replace、show 区别"></a>7、Fragment 添加方式，add、replace、show 区别</h3><p>add():向Activity加入一个片段，这个片段在activity容器中有他自己的视图。<br>hide():隐藏Fragment，已经添加到父容器中的Fragment有关，隐藏Fragment的View。<br>show():显示被隐藏的Fragment，这仅仅对已经添加到activity中的Fragment有关,显示Fragment的View。<br>detach():Fragment的视图被销毁，但是它的状态没有被销毁，还是被FragmentMenager管理。<br>attach():Fragment的view重新加载到UI视图中，并显示，也就是执行onCreateView()→onActivityCreate()→onStart()→onResume()。<br>replace():就相当于执行remove(Fragment)→add(int, Fragment, String)这两个方法</p>
+<h3 id="8、volatile-关键字作用"><a href="#8、volatile-关键字作用" class="headerlink" title="8、volatile 关键字作用"></a>8、volatile 关键字作用</h3><p>禁止指令重排序，轻量级的synchronized，保重了共享变量的“可见性”，可见性的意思是一个线程修改变量的值是另一个线程是能读到这个值<br>当一个变量被 volatile 修饰时，任何线程对它的写操作都会立即刷新到主内存中，并且会强制让缓存了该变量的线程中的数据清空，必须从主内存重新读取最新数据</p>
+<h3 id="9、Binder-机制"><a href="#9、Binder-机制" class="headerlink" title="9、Binder 机制"></a>9、Binder 机制</h3><p>Binder 是一种跨进程的通信方式，它也是一个类，实现了IBinder接口，从framework层面讲，它是ServiceManager链接各个service的桥梁，它也是应用层bindService之后给客户端提供调用服务端的服务或数据，服务包括普通服务和AIDL</p>
+<h3 id="10、HTTP-版本之间区别"><a href="#10、HTTP-版本之间区别" class="headerlink" title="10、HTTP 版本之间区别"></a>10、HTTP 版本之间区别</h3><p>一、HTTP1.0和HTTP1.1的区别<br>HTTP1.0最早在网页中使用是在1996年，那个时候只是使用一些较为简单的网页上和网络请求上，而HTTP1.1则在1999年才开始广泛应用于现在的各大浏览器网络请求中，同时HTTP1.1也是当前使用最为广泛的HTTP协议。 主要区别主要体现在：</p>
+<p>1、缓存处理。在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</p>
+<p>2、带宽优化及网络连接的使用。HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</p>
+<p>3、错误通知的管理。在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
+<p>4、Host头处理。在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</p>
+<p>5、长连接。HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点<br>二、HTTP2.0和HTTP1.X相比的新特性<br>1、新的二进制格式（Binary Format）。HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮。</p>
+<p>2、多路复用（MultiPlexing）。即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</p>
+<p>3、header压缩。如HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。</p>
+<p>4、服务端推送（server push）。同SPDY一样，HTTP2.0也具有server push功能。</p>
+<p>三、HTTPS与HTTP的一些区别<br>1、HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。<br>2、HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。<br>3、HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。<br>4、HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。</p>
+<h3 id="11、invalidate-、requestLayout-区别："><a href="#11、invalidate-、requestLayout-区别：" class="headerlink" title="11、invalidate()、requestLayout() 区别："></a>11、invalidate()、requestLayout() 区别：</h3><ol>
+<li>requeLayout() : 控件会重新执行 onMesure() onLayout() ,比如 ScrollView中有LinearLaout ，LinearLayout里面有纵向排列的ImageView和TextView,那么假如ImageView的长宽发生了变化，而要立即在手机上显示这个变化的话，就可调用 imageView.requestLayout();这样的话ScrollView 会重新执行onMesure()这个方法会确定控件的大小然后在确定出自己的宽高，最后在执行onLayout()，这个方法是对所有的子控件进行定位的。他只调用measure()和layout()过程，不会调用draw()。<br>2.invalidate() :是自定义View 的时候，重新执行onDraw()方法，当view只在内容和可见度方面发生变化时调用。<br>3 layout()：对控件进行重新定位执行onLayout()这个方法，比如要做一个可回弹的ScrollView，思路就是随着手势的滑动子控件滑动，那么我们可以将ScrollView的子控件调用layout（l,t,r,b）这个方法就行了。<h3 id="12、ArrayList-怎么实现线程安全"><a href="#12、ArrayList-怎么实现线程安全" class="headerlink" title="12、ArrayList 怎么实现线程安全"></a>12、ArrayList 怎么实现线程安全</h3>使用synchronized关键字在调用这个实例的地方加锁或者使用Collections.synchronizedList()方法将一个ArrayList变成一个增删改查都加锁的类的实例，还有就是使用CopyOnWriteArrayList，这个类是线程安全的<h3 id="13、ConcurrentHashMap为什么效率比Hashtable高？"><a href="#13、ConcurrentHashMap为什么效率比Hashtable高？" class="headerlink" title="13、ConcurrentHashMap为什么效率比Hashtable高？"></a>13、ConcurrentHashMap为什么效率比Hashtable高？</h3>jdk1.7下<br>Segment（分段锁）类，它继承自ReentrantLock。<br>ConcurrentHashMap使用分段锁技术，将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问，能够实现真正的并发访问</li>
+</ol>
 <ul>
-<li>public boolean dispatchTouchEvent(MotionEvent ev)<br>用来进行事件的分发。如果事件能够传递给当前的View，那么这个方法就一定会被调用，返回结果受当前View的onTouchEvent和下级的dispatchTouchEvent方法影响，表示是否消耗当前事件。</li>
-<li>public boolean onInterceptTouchEvent(MotionEvent event)<br>在dispatchTouchEvent方法内部调用，这个方法表示是否拦截某个事件，这个方法存在于父级的View中，也就是一般重写在ViewGroup中</li>
-<li>public boolean onTouchEvent(MotionEvent event)<br>在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件</li>
+<li>坏处<br>这一种结构的带来的副作用是Hash的过程要比普通的HashMap要长</li>
+<li>好处<br>写操作的时候可以只对元素所在的Segment进行加锁即可，不会影响到其他的Segment，这样，在最理想的情况下，ConcurrentHashMap可以最高同时支持Segment数量大小的写操作（刚好这些写操作都非常平均地分布在所有的Segment上）。</li>
 </ul>
-</blockquote>
-<p>用一段伪代码来表示三种方法的关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev)&#123;</span><br><span class="line">    boolean comsume = false；</span><br><span class="line">    if(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      consume = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    return consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当一个，<code>View</code>需要处理事件时，如果它设置了<code>OnTouchListener</code>，那么<code>OnTouchListener</code>中的<code>onTouch</code>方法被回调。这时事件如何处理还要看<code>onTouch</code>的返回值，如果返回<code>false</code>，则当前<code>View</code>的<code>onTouchEvent</code>方法会被调用；如果返回true，那么<code>onTouchEvent</code>方法将不会调用。由此可见，给View设置的<code>OnTouchListener</code>，其优先级比<code>onTouchEvent</code>要高。在<code>onTouchEvent</code>方法中，如果当前设置的有<code>onClickListener</code>，那么它的click方法会被调用，可以看出我们平时所用的<code>onClickListener</code>优先级最低，位于末端。<br>当一个点击事件产生后，它的传递过程遵循如下规则：<code>Activity</code>-&gt;<code>Window</code>-&gt;<code>View</code>,这里的View是<code>顶级View</code>，顶级View接收到事件后，会按照事件分发机制一步步向下分发事件。考虑一种情况，如果一个View的onTouchEvent返回false，那么它的父容器的<code>onTouchEvent</code>将会被调用，以此类推。如果所有的元素都不处理这个事件，那么最终这个事件会被传递给<code>Activity</code>处理，调用<code>Activity</code>的<code>onTouchEvent</code>方法。<br>关于事件分发机制，这里有一些结论：<br>（1）同一事件序列是指从手指接触屏幕的那一刻起，到手指离开屏幕，事件序列会经历down事件，以及数量不定的move事件，最后以up事件结束；<br>（2）正常情况下，一个事件序列只能被一个View拦截消耗；<br>（3）某个View一旦决定拦截，那么这一个事件序列只能由它自己处理，并且它的<code>onInterceptTouchEvent</code>方法<br>不会再被调用<br>（4）某个<code>View</code>一旦开始处理事件，如果它不消耗<code>ACTION_DOWN</code>事件（<code>onTouchEvent</code>返回了<code>false</code>），那么同一事件序列的其他事件都不会再交给它处理，并且事件将重新交由它的父元素去处理，即调用父元素的<code>onTouchEvent</code>。<br>（5）如果<code>View</code>不消耗除了<code>ACTION_DOWN</code>的其他事件，那么这个点击事件会消失，此时父元素的<code>onTouchEvent</code>并不会被调用，并且当前<code>View</code>可以持续收到后续事件。并且这些消失的点击事件会交给<code>Activity</code>处理。<br>（6）<code>ViewGroup</code>默认不会拦截任何事件。<br>（7）<code>View</code>没有<code>onInterceptTouchEvent</code>方法，一旦有事件传递给它就会调用它的<code>onTouchEvent</code>方法。<br>（8）<code>View</code>的<code>onTouchEvent</code>默认都会消耗事件，除非它是不可点击的（<code>clickable</code>和<code>longClickable</code>同时为<code>false</code>，<code>View</code>的<code>longClickable</code>默认为<code>false</code>）。<br>（9）<code>View</code>的<code>enable</code>属性不影响<code>onTouchEvent</code>的默认返回值。<br>（10）onClick会发生的前提是当前View是可点击的，并且它收到了down和up事件。<br>（11）事件传递过程都是由外向内的，通过<code>requestDisallowInterceptTouchEvent</code>方法可以在子元素中干预父元素的事件分发过程，但是<code>ACTION_DOWN</code>事件除外。<br><code>mInputEventConsistencyVerifier</code>变量是调试用的，不用理会。<br><code>onFilterTouchEventForSecurity()</code>表示是否要分发该触摸事件，具体可以看里面的源码，主要看是否该View是否被屏蔽了。<br><code>intercepted</code>变量标志Group是否拦截Touch事件的传递，会调用ViewGroup的<code>onInterceptTouchEvent</code>方法进行判定。</p>
+<p>jdk1.8<br>JDK8中彻底放弃了Segment转而采用的是Node，其设计思想也不再是JDK1.7中的分段锁思想。<br>Node：保存key，value及key的hash值的数据结构。其中value和next都用volatile修饰，保证并发的可见性。<br>CAS+Synchronized保证线程安全</p>
+<h3 id="14、List、Map、Set-哪个能存null，哪个能重复？"><a href="#14、List、Map、Set-哪个能存null，哪个能重复？" class="headerlink" title="14、List、Map、Set 哪个能存null，哪个能重复？"></a>14、List、Map、Set 哪个能存null，哪个能重复？</h3><p>List是数组结构，插入数据时它并不对是否是null进行判断，所以它不仅允许null，还可以有多个null<br>Set的底层实现就是用Map的哈希值去维持唯一，所以说它是允许有null的，但是只能有一个<br>Map允许key和value都允许null，Hashtable都不允许null，他们都不允许重复key</p>
+<h3 id="15、Handler-epoll-机制"><a href="#15、Handler-epoll-机制" class="headerlink" title="15、Handler epoll 机制"></a>15、Handler epoll 机制</h3><p>管道是Linux系统中的一种进程间通信机制，简单来说，管道就是一个文件，在管道的两端，分别是两个打开文件文件描述符，这两个打开文件描述符都是对应同一个文件，其中一个是用来读的，别一个是用来写的，一般的使用方式就是，一个线程通过读文件描述符中来读管道的内容，当管道没有内容时，这个线程就会进入等待状态，而另外一个线程通过写文件描述符来向管道中写入内容，写入内容的时候，如果另一端正有线程正在等待管道中的内容，那么这个线程就会被唤醒。这个等待和唤醒的操作是如何进行的呢，这就要借助Linux系统中的epoll机制了。 Linux系统中的epoll机制为处理大批量句柄而作了改进的poll，是Linux下多路复用IO接口select/poll的增强版本，它能显著减少程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。但是这里我们其实只需要监控的IO接口只有mWakeReadPipeFd一个，即前面我们所创建的管道的读端，为什么还需要用到epoll呢？有点用牛刀来杀鸡的味道。其实不然，这个Looper类是非常强大的，它除了监控内部所创建的管道接口之外，还提供了addFd接口供外界面调用，外界可以通过这个接口把自己想要监控的IO事件一并加入到这个Looper对象中去，当所有这些被监控的IO接口上面有事件发生时，就会唤醒相应的线程来处理，不过这里我们只关心刚才所创建的管道的IO事件的发生<br>epoll_wait  监控的超时时间为timeoutMillis</p>
 
       
     </div>
@@ -424,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -437,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/17/JVM1/" rel="next" title="JVM日记(一)">
-                <i class="fa fa-chevron-left"></i> JVM日记(一)
+              <a href="/2019/08/25/launchMode/" rel="next" title="活动的launchMode">
+                <i class="fa fa-chevron-left"></i> 活动的launchMode
               </a>
             
           </div>
@@ -447,8 +444,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/09/androidThread/" rel="prev" title="Android有哪些处理耗时任务的方式">
-                Android有哪些处理耗时任务的方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/25/volatile/" rel="prev" title="volatile关键字">
+                volatile关键字 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -588,6 +594,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Android-项目中-assets-目录和-res-目录有什么区别"><span class="nav-number">1.</span> <span class="nav-text">1、Android 项目中 assets 目录和 res 目录有什么区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、如何结束一个正在运行的线程"><span class="nav-number">2.</span> <span class="nav-text">2、如何结束一个正在运行的线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、如何获取某个-View-的大小并动态改变-View-的大小"><span class="nav-number">3.</span> <span class="nav-text">3、如何获取某个 View 的大小并动态改变 View 的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、String、StringBuilder、StringBuffer-区别"><span class="nav-number">4.</span> <span class="nav-text">4、String、StringBuilder、StringBuffer 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、泛型擦除"><span class="nav-number">5.</span> <span class="nav-text">5、泛型擦除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、ArrayMap、HashMap、SparseArray-原理"><span class="nav-number">6.</span> <span class="nav-text">6、ArrayMap、HashMap、SparseArray 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、Fragment-添加方式，add、replace、show-区别"><span class="nav-number">7.</span> <span class="nav-text">7、Fragment 添加方式，add、replace、show 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、volatile-关键字作用"><span class="nav-number">8.</span> <span class="nav-text">8、volatile 关键字作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、Binder-机制"><span class="nav-number">9.</span> <span class="nav-text">9、Binder 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、HTTP-版本之间区别"><span class="nav-number">10.</span> <span class="nav-text">10、HTTP 版本之间区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、invalidate-、requestLayout-区别："><span class="nav-number">11.</span> <span class="nav-text">11、invalidate()、requestLayout() 区别：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、ArrayList-怎么实现线程安全"><span class="nav-number">12.</span> <span class="nav-text">12、ArrayList 怎么实现线程安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、ConcurrentHashMap为什么效率比Hashtable高？"><span class="nav-number">13.</span> <span class="nav-text">13、ConcurrentHashMap为什么效率比Hashtable高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、List、Map、Set-哪个能存null，哪个能重复？"><span class="nav-number">14.</span> <span class="nav-text">14、List、Map、Set 哪个能存null，哪个能重复？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15、Handler-epoll-机制"><span class="nav-number">15.</span> <span class="nav-text">15、Handler epoll 机制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
