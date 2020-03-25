@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
+<meta name="description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android的零碎知识点">
 <meta property="og:url" content="https://tomycatbaby.github.io/2020/01/05/android1/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
+<meta property="og:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-25T06:42:34.973Z">
+<meta property="og:updated_time" content="2020-03-25T07:00:37.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android的零碎知识点">
-<meta name="twitter:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的 2、如何结束一个正在运行的线程使用interrupted()方法打断线程的运行，不建议使用">
+<meta name="twitter:description" content="1、Android 项目中 assets 目录和 res 目录有什么区别assets下可以新建子目录，res下的子目录不能再新建子目录assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用assets使用是需要用AssetManager取出输入流使用的">
 
 
 
@@ -374,8 +374,7 @@
       
 
       
-        <a id="more"></a>
-<h3 id="1、Android-项目中-assets-目录和-res-目录有什么区别"><a href="#1、Android-项目中-assets-目录和-res-目录有什么区别" class="headerlink" title="1、Android 项目中 assets 目录和 res 目录有什么区别"></a>1、Android 项目中 assets 目录和 res 目录有什么区别</h3><p>assets下可以新建子目录，res下的子目录不能再新建子目录<br>assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用<br>assets使用是需要用AssetManager取出输入流使用的</p>
+        <h3 id="1、Android-项目中-assets-目录和-res-目录有什么区别"><a href="#1、Android-项目中-assets-目录和-res-目录有什么区别" class="headerlink" title="1、Android 项目中 assets 目录和 res 目录有什么区别"></a>1、Android 项目中 assets 目录和 res 目录有什么区别</h3><p>assets下可以新建子目录，res下的子目录不能再新建子目录<br>assets也会随着apk一起打包，但是不会进行编译，res目录下的文件都会进行编译后使用R.的方式就能使用<br>assets使用是需要用AssetManager取出输入流使用的<br><a id="more"></a></p>
 <h3 id="2、如何结束一个正在运行的线程"><a href="#2、如何结束一个正在运行的线程" class="headerlink" title="2、如何结束一个正在运行的线程"></a>2、如何结束一个正在运行的线程</h3><p>使用interrupted()方法打断线程的运行，不建议使用已遗弃的stop方法，因为stop的本质上是不安全的，用 Thread.stop 来终止线程将释放它已经锁定的所有监视器（作为沿堆栈向上传播的未检查 ThreadDeath 异常的一个自然后果）。如果以前受这些监视器保护的任何对象都处于一种不一致的状态，则损坏的对象将对其他线程可见，这有可能导致任意的行为。stop的许多使用都应由只修改某些变量以指示目标线程应该停止运行的代码来取代。目标线程应定期检查该变量，并且如果该变量指示它要停止运行，则从其运行方法依次返回。如果目标线程等待很长时间（例如基于一个条件变量），则应使用 interrupt 方法来中断该等待</p>
 <h3 id="3、如何获取某个-View-的大小并动态改变-View-的大小"><a href="#3、如何获取某个-View-的大小并动态改变-View-的大小" class="headerlink" title="3、如何获取某个 View 的大小并动态改变 View 的大小"></a>3、如何获取某个 View 的大小并动态改变 View 的大小</h3><p>LayoutParams动态改变view的大小</p>
 <h3 id="4、String、StringBuilder、StringBuffer-区别"><a href="#4、String、StringBuilder、StringBuffer-区别" class="headerlink" title="4、String、StringBuilder、StringBuffer 区别"></a>4、String、StringBuilder、StringBuffer 区别</h3><p>运行速度：StringBuilder&gt;StringBuffer&gt;String<br>线程安全：String，StringBuffer<br>非线程安全：StringBuilder<br>String是字符串常量，每次的修改会导致对象的不断创建和回收，所以它最慢<br>StringBuffer由于其中很多方法都是带有synchronize关键字的，所以它的速度比StringBuilder慢<br>String是不可变类，所以String是线程安全的<br>缓冲区区别：StringBuffer每次toString会直接使用toStringCache来构造一个字符串<br>StringBuilder则每次需要复制一次字符数组，然后构造一个字符串</p>

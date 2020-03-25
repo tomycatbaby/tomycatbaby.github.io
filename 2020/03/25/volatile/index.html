@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类12345678910111213141516public class Singleton &amp;#123">
+<meta name="description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="volatile关键字">
 <meta property="og:url" content="https://tomycatbaby.github.io/2020/03/25/volatile/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类12345678910111213141516public class Singleton &amp;#123">
+<meta property="og:description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-25T06:40:07.743Z">
+<meta property="og:updated_time" content="2020-03-25T07:00:24.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="volatile关键字">
-<meta name="twitter:description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类12345678910111213141516public class Singleton &amp;#123">
+<meta name="twitter:description" content="介绍volatile关键字，java给出的线程安全的轻量级实现1、保证可见性，用volatile修饰的变量每次都是从内存中读取2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类">
 
 
 
@@ -374,8 +374,7 @@
       
 
       
-        <a id="more"></a>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>volatile关键字，java给出的线程安全的轻量级实现<br>1、保证可见性，用volatile修饰的变量每次都是从内存中读取<br>2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化<br>3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static volatile Singleton instance;</span><br><span class="line">  </span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line">    // DCL</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance ==null)&#123;   //第一次检查</span><br><span class="line">            synchronized (Singleton.class)&#123;</span><br><span class="line">                if(instance == null)&#123;   //第二次检查</span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>volatile关键字，java给出的线程安全的轻量级实现<br>1、保证可见性，用volatile修饰的变量每次都是从内存中读取<br>2、禁止指令重排序，用volatile修饰的变量禁止指令重排优化<br>3、不保证原子性，要保证原子性的话需要使用synchronize关键字或者concurrent包下的原子类<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static volatile Singleton instance;</span><br><span class="line">  </span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line">    // DCL</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance ==null)&#123;   //第一次检查</span><br><span class="line">            synchronized (Singleton.class)&#123;</span><br><span class="line">                if(instance == null)&#123;   //第二次检查</span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>以上是常见的双重校验的单例模式<br>instance = new Singleton(),分为三步：<br>1、给instance分配内存，<br>2、调用它的构造方法来初始化对象，<br>3、将instance对象指向初始分配的内存空间（这一步执行了instance就非null）</p>
 <p>在这三步中，第二步和第三步不存在数据依赖，如果虚拟机指令重排优化，就会存在其他线程访问的时候instance为非null的情况，然后访问就会出错<br>这个版本的双重校验单例模式，使用了volatile关键字去禁止指令重排序来保证线程安全。</p>
 <h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><p>当对非 volatile 变量进行读写的时候，每个线程先从内存拷贝变量到 CPU 缓存中。<br>如果计算机有多个CPU，每个线程可能在不同的 CPU 上被处理，这意味着每个线程可以拷贝到不同的 CPU cache 中，而volatile变量会跳过CUP cache，每次读都是从内存中读取<br>volatile的性能经过了很多的优化，建议使用，它读的性能是很高的，几乎和非volatile变量一致，写的性能就差了许多，因为内存界定。<br>volatile经过写操作后会做两件事，1、同步到系统内存中，2、使其他CUP缓存到的volatile变量的内存地址失效，必须重新从内存中读取</p>
