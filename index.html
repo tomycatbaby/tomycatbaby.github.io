@@ -554,6 +554,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/08/26/notificationChannel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zufeng Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/hg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白天还是黑夜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/26/notificationChannel/" itemprop="url">notificationChannel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T19:14:16+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Android-8-0上的通知栏简单适配"><a href="#Android-8-0上的通知栏简单适配" class="headerlink" title="Android 8.0上的通知栏简单适配"></a>Android 8.0上的通知栏简单适配</h1><p>当我们升级到Android O以上，也就是将targetSdkVersion升级到26时，原来的通知方法就是提示被遗弃了，所以我们需要升级下代码了。<br>Android O上的通知出现了一个通知渠道的概念，也就是每条通知都需要有一个对应的渠道，8.0Google将用户的权利放到最大，用户可以自由的选择是否振铃，是否震动，是否关闭这个渠道的通知。<br>首先如何使用通知渠道<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/26/notificationChannel/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/08/25/launchMode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -624,34 +748,20 @@
 
       
         
-          
-            <a id="more"></a>
-<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用</p>
+          <h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用</p>
 <blockquote>
 <ul>
 <li>standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的实例就会创建在谁的任务栈中。非新手都知道在service中或者使用ApplicationContext去启动活动都会出异常，导致启动失败，根本原因就是因为service上下文没有对应的任务栈，所以我们就会给它加上FLAG_ACTICITY_NEW_TASK这个flag，这样就会为它创建新的任务栈，一个singleTask启动的</li>
 <li>singleTop：在这种模式下，如果需要启动的Activity位于当前的栈顶，那么这个Activity不会被重新创建，它的onNewIntent会被回调，如果Activity已经存在但是不在栈顶，依然会重新创建</li>
 <li>singleTask：这是一种单实例模式，在这种模式下，同一个栈中只会存在同一种实例，同样如果它在栈中存在也会回调onNewIntent，同时singleTask有clearTop的效果，位于它之上的实例会全部出栈</li>
-<li>singleInstance：这是一种加强的单实例模式，它具有singleTask所有的特性，再加上它被创建后会位于一个单独的任务栈中，这种模式的栈只有一个实例。<!-- more -->
-</li>
-</ul>
-</blockquote>
-<p>多次提到某个Activity所需的任务栈，什么是Activity所需的任务栈呢？从TaskAffinity这个配置参数说起，可以翻译为任务相关性，这个参数标注了一个Activity所需任务栈的名字，默认情况下，Activity的任务栈名字为包名，这个参数主要和singleTask或者allowTaskReparenting属性配对使用，其他情况下没有意义。另外任务栈分为前台任务栈和后台任务栈，后台任务栈的Activity处于暂停状态，通过切换将后台任务切换到前台。</p>
-<blockquote>
-<p>singleTask和TaskAffinity配合使用时，它是具有该模式的Activity的目前任务栈的名字，待启动的Activity会运行到名字和TaskAffinity相同的任务栈中。<br>singleTask和allowTaskReparenting配合使用时，情况比较复杂了，简而言之就是A应用启动B应用的Activity C，如果Activity C的allowTaskReparenting是true，则已启动的活动C会从应用A的任务栈移动到应用B的任务栈，点开B应用不是打开主界面而是进入已启动的活动C。</p>
-</blockquote>
-<p>另外的一种指定启动模式的方法，就是在启动的Intent中设置FLAG标志，这个的优先级是高于xml中直接指定的，同时存在以第二种为准，其次它们的范围有所限制，xml中不能使用FLAG_ACTIVITY_CLEAR_TOP，Intent中不能指定singleInstance，跟launchMode相关是哪些标志呢？</p>
-<blockquote>
-<ul>
-<li>FLAG_ACTIVITY_NEW_TASK</li>
-<li>FLAG_ACTIVITY_SINGLE_TOP</li>
-<li>FLAG_ACTIVITY_CLEAR_TASK</li>
-<li>FLAG_ACTIVITY_CLEAR_TOP</li>
-</ul>
-</blockquote>
-<p>FLAG_ACTIVITY_NEW_TASK 设计的初衷是让Activity在目标taskAffinity中启动</p>
-
-          
+<li>singleInstance：这是一种加强的单实例模式，它具有singleTask所有的特性，再加上它被创建后会位于一个单独的任务栈中，这种模式的栈只有一个实例。</li></ul></blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/25/launchMode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1563,154 +1673,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/04/17/timesOfInteger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zufeng Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/hg.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白天还是黑夜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/timesOfInteger/" itemprop="url">整数中1出现的次数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T15:38:33+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><div><br>    <center><br>        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=552001753&auto=0&height=66"></iframe><br>    </center><br></div><br>求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数</p>
-<blockquote>
-<p>思路<br></p></blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/timesOfInteger/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1765,7 +1727,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

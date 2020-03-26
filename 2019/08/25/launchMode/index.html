@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的">
+<meta name="description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的实">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="活动的launchMode">
 <meta property="og:url" content="https://tomycatbaby.github.io/2019/08/25/launchMode/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的">
+<meta property="og:description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-25T07:00:04.127Z">
+<meta property="og:updated_time" content="2020-03-26T12:12:20.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="活动的launchMode">
-<meta name="twitter:description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的">
+<meta name="twitter:description" content="启动模式Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用   standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的实">
 
 
 
@@ -373,14 +374,13 @@
       
 
       
-        <a id="more"></a>
-<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用</p>
+        <h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><p>Android的Activity有四种启动模式都清楚，标准启动模式standard，栈顶复用singleTop，栈内复用singleTask，单实例模式singleInstance，他们都在在AndroidManifeast中使用</p>
 <blockquote>
 <ul>
 <li>standard：每次启动startActivity都会在任务栈中创建一个新的Activity实例，重新走一遍活动的生命周期，谁去启动这个新实例，这个新的实例就会创建在谁的任务栈中。非新手都知道在service中或者使用ApplicationContext去启动活动都会出异常，导致启动失败，根本原因就是因为service上下文没有对应的任务栈，所以我们就会给它加上FLAG_ACTICITY_NEW_TASK这个flag，这样就会为它创建新的任务栈，一个singleTask启动的</li>
 <li>singleTop：在这种模式下，如果需要启动的Activity位于当前的栈顶，那么这个Activity不会被重新创建，它的onNewIntent会被回调，如果Activity已经存在但是不在栈顶，依然会重新创建</li>
 <li>singleTask：这是一种单实例模式，在这种模式下，同一个栈中只会存在同一种实例，同样如果它在栈中存在也会回调onNewIntent，同时singleTask有clearTop的效果，位于它之上的实例会全部出栈</li>
-<li>singleInstance：这是一种加强的单实例模式，它具有singleTask所有的特性，再加上它被创建后会位于一个单独的任务栈中，这种模式的栈只有一个实例。<!-- more -->
+<li>singleInstance：这是一种加强的单实例模式，它具有singleTask所有的特性，再加上它被创建后会位于一个单独的任务栈中，这种模式的栈只有一个实例。<a id="more"></a>
 </li>
 </ul>
 </blockquote>
@@ -413,6 +413,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
 
       
       
@@ -432,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/05/android1/" rel="prev" title="Android的零碎知识点">
-                Android的零碎知识点 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/26/notificationChannel/" rel="prev" title="notificationChannel">
+                notificationChannel <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -515,7 +521,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白天还是黑夜">
-<meta property="og:url" content="https://tomycatbaby.github.io/tags/Spring-Boot/index.html">
+<meta name="description" content="Android 8.0上的通知栏简单适配当我们升级到Android O以上，也就是将targetSdkVersion升级到26时，原来的通知方法就是提示被遗弃了，所以我们需要升级下代码了。Android O上的通知出现了一个通知渠道的概念，也就是每条通知都需要有一个对应的渠道，8.0Google将用户的权利放到最大，用户可以自由的选择是否振铃，是否震动，是否关闭这个渠道的通知。首先如何使用通知渠道">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="notificationChannel">
+<meta property="og:url" content="https://tomycatbaby.github.io/2019/08/26/notificationChannel/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta property="og:description" content="Android 8.0上的通知栏简单适配当我们升级到Android O以上，也就是将targetSdkVersion升级到26时，原来的通知方法就是提示被遗弃了，所以我们需要升级下代码了。Android O上的通知出现了一个通知渠道的概念，也就是每条通知都需要有一个对应的渠道，8.0Google将用户的权利放到最大，用户可以自由的选择是否振铃，是否震动，是否关闭这个渠道的通知。首先如何使用通知渠道">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-26T12:11:30.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白天还是黑夜">
-<meta name="twitter:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta name="twitter:title" content="notificationChannel">
+<meta name="twitter:description" content="Android 8.0上的通知栏简单适配当我们升级到Android O以上，也就是将targetSdkVersion升级到26时，原来的通知方法就是提示被遗弃了，所以我们需要升级下代码了。Android O上的通知出现了一个通知渠道的概念，也就是每条通知都需要有一个对应的渠道，8.0Google将用户的权利放到最大，用户可以自由的选择是否振铃，是否震动，是否关闭这个渠道的通知。首先如何使用通知渠道">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://tomycatbaby.github.io/tags/Spring-Boot/"/>
+  <link rel="canonical" href="https://tomycatbaby.github.io/2019/08/26/notificationChannel/"/>
 
 
 
 
 
-  <title>标签: Spring Boot | 白天还是黑夜</title>
+  <title>notificationChannel | 白天还是黑夜</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,54 +293,156 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Spring Boot<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/08/26/notificationChannel/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zufeng Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/hg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白天还是黑夜">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/10/28/springboot/" itemprop="url">
-              
-                <span itemprop="name">Spring Boot 入门第一篇</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">notificationChannel</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-28T09:55:41+08:00"
-              content="2018-10-28" >
-          10-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T19:14:16+08:00">
+                2019-08-26
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-8-0上的通知栏简单适配"><a href="#Android-8-0上的通知栏简单适配" class="headerlink" title="Android 8.0上的通知栏简单适配"></a>Android 8.0上的通知栏简单适配</h1><p>当我们升级到Android O以上，也就是将targetSdkVersion升级到26时，原来的通知方法就是提示被遗弃了，所以我们需要升级下代码了。<br>Android O上的通知出现了一个通知渠道的概念，也就是每条通知都需要有一个对应的渠道，8.0Google将用户的权利放到最大，用户可以自由的选择是否振铃，是否震动，是否关闭这个渠道的通知。<br>首先如何使用通知渠道<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">        String channelId = &quot;subscribe&quot;;</span><br><span class="line">        String channelName = &quot;订阅消息&quot;;</span><br><span class="line">        int importance = NotificationManager.IMPORTANCE_HIGH;</span><br><span class="line">        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);</span><br><span class="line">        channel.setShowBadge(true);//通知角标，默认为true</span><br><span class="line">        channel.enableLights(true);</span><br><span class="line">        channel.enableVibration(true);</span><br><span class="line">        //channel.setSound();</span><br><span class="line">        NotificationManager notificationManager = (NotificationManager) getSystemService(</span><br><span class="line">            NOTIFICATION_SERVICE);</span><br><span class="line">        notificationManager.createNotificationChannel(channel);    </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面就是创建了一个通知渠道，它需要定义一个渠道ID，渠道名称，以及重要性等级，需要注意的是：我们在使用渠道时需要先创建它，而渠道只会创建一次，而且除了（名字，描述，blocksystem，以及优先级），其他的震动，响铃都不能在创建之后修改了，你只能删除这个渠道，重新创建一个。<br>但是删除的渠道并不会消失，只会被打上一个delete标签。想要彻底删除的话只有清空数据或者卸载应用了，要不下次创建出同样ID的渠道，它只会将原先的delete标签去除，重新启用。</p>
+<h1 id="显示一条通知"><a href="#显示一条通知" class="headerlink" title="显示一条通知"></a>显示一条通知</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line">Notification notification = new NotificationCompat.Builder(this, &quot;subscribe&quot;)</span><br><span class="line">        .setContentTitle(&quot;订阅消息&quot;)</span><br><span class="line">        .setContentText(&quot;收到一条订阅消息！&quot;)</span><br><span class="line">        .setSmallIcon(R.mipmap.ic_launcher_round)</span><br><span class="line">        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))</span><br><span class="line">        .setWhen(System.currentTimeMillis())</span><br><span class="line">        .setAutoCancel(true)</span><br><span class="line">        .setNumber(2)//这个也可以显示通知的角标</span><br><span class="line">        .build();</span><br><span class="line">manager.notify(1, notification);</span><br></pre></td></tr></table></figure>
+<h1 id="删除通知渠道"><a href="#删除通知渠道" class="headerlink" title="删除通知渠道"></a>删除通知渠道</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line">manager.deleteNotificationChannel(channelId);</span><br></pre></td></tr></table></figure>
+<h1 id="跳转到通知界面提示用户打开通知"><a href="#跳转到通知界面提示用户打开通知" class="headerlink" title="跳转到通知界面提示用户打开通知"></a>跳转到通知界面提示用户打开通知</h1><p>当用户主动关掉了通知渠道之后，应用如果必须要让用户打开功能才正常的话，可以使用如下方式打开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">            NotificationChannel channel = manager.getNotificationChannel(&quot;chat&quot;);</span><br><span class="line">            if (channel.getImportance() == NotificationManager.IMPORTANCE_NONE) &#123;</span><br><span class="line">                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);</span><br><span class="line">                intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());</span><br><span class="line">                intent.putExtra(Settings.EXTRA_CHANNEL_ID, channel.getId());</span><br><span class="line">                startActivity(intent);</span><br><span class="line">                Toast.makeText(this, &quot;请手动将通知打开&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>#总结<br>8.0的通知渠道留给开发者可操控的空间很少，用户掌控着绝对的主动权。通知渠道创建之后无法修改其他重要属性也是必须要知道的。如果应用的targetSdkversion升级到了26，Android系统就认为你已经做好了适配工作，如果不使用通知渠道的话，你的通知可能就无法弹出了。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/launchMode/" rel="next" title="活动的launchMode">
+                <i class="fa fa-chevron-left"></i> 活动的launchMode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/05/android1/" rel="prev" title="Android的零碎知识点">
+                Android的零碎知识点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +450,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -366,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -386,7 +503,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -408,7 +525,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -454,6 +571,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-8-0上的通知栏简单适配"><span class="nav-number">1.</span> <span class="nav-text">Android 8.0上的通知栏简单适配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显示一条通知"><span class="nav-number">2.</span> <span class="nav-text">显示一条通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除通知渠道"><span class="nav-number">3.</span> <span class="nav-text">删除通知渠道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳转到通知界面提示用户打开通知"><span class="nav-number">4.</span> <span class="nav-text">跳转到通知界面提示用户打开通知</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -468,7 +601,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -598,6 +731,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
