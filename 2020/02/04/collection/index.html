@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白天还是黑夜">
-<meta property="og:url" content="https://tomycatbaby.github.io/page/2/index.html">
+<meta name="description" content="1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList   ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1)，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。 ArrayList中最">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的容器类和Android的特有的容器类">
+<meta property="og:url" content="https://tomycatbaby.github.io/2020/02/04/collection/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta property="og:description" content="1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList   ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1)，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。 ArrayList中最">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-04T07:09:50.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白天还是黑夜">
-<meta name="twitter:description" content="人生是一场徒步旅行，不走到最后，怎么知道能走多远">
+<meta name="twitter:title" content="Java中的容器类和Android的特有的容器类">
+<meta name="twitter:description" content="1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList   ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1)，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。 ArrayList中最">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://tomycatbaby.github.io/page/2/"/>
+  <link rel="canonical" href="https://tomycatbaby.github.io/2020/02/04/collection/"/>
 
 
 
 
 
-  <title>白天还是黑夜</title>
+  <title>Java中的容器类和Android的特有的容器类 | 白天还是黑夜</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,9 +292,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -306,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/04/23/android/">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2020/02/04/collection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zufeng Lu">
@@ -323,9 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/23/android/" itemprop="url">Android事件分发机制</a></h1>
+          <h1 class="post-title" itemprop="name headline">Java中的容器类和Android的特有的容器类</h1>
         
 
         <div class="post-meta">
@@ -337,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T20:00:34+08:00">
-                2019-04-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T15:08:28+08:00">
+                2020-02-04
               </time>
             
 
@@ -347,28 +346,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -397,312 +374,70 @@
       
 
       
-        
-          <p>View的事件分发机制是解决滑动冲突的基础。<br>首先要理解两个概念，<code>View</code>和<code>ViewGroup</code>，控件如<code>Button</code>，<code>TexiView</code>，<code>ImageView</code>等都继承自<code>View</code>父类，布局如<code>LinerLayout</code>，<code>RelativeLayout</code>等都继承自<code>ViewGroup</code>。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。</p>
-<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/23/android/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/04/17/JVM1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zufeng Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/hg.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白天还是黑夜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/17/JVM1/" itemprop="url">JVM日记(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T22:23:00+08:00">
-                2019-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Java虚拟机第一篇"><a href="#Java虚拟机第一篇" class="headerlink" title="Java虚拟机第一篇"></a>Java虚拟机第一篇</h1><p>熟读《深入理解java虚拟机》，将自己的所学所感记录下来</p>
-<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>根据java虚拟机规范，JVM在执行程序时会将它所管理的内存划分为5大块数据区域，分为叫做方法区，堆，虚拟机栈，本地方法栈，程序计数器。方法区和堆都是所有线程共享的数据区，其余是线程隔离的数据区<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/17/JVM1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/04/17/timesOfInteger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zufeng Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/hg.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白天还是黑夜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/timesOfInteger/" itemprop="url">整数中1出现的次数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T15:38:33+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><div><br>    <center><br>        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=552001753&auto=0&height=66"></iframe><br>    </center><br></div><br>求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数</p>
+        <p>1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList</p>
 <blockquote>
-<p>思路<br></p></blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/timesOfInteger/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<ul>
+<li>ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是<code>oldCapacity + (oldCapacity &gt;&gt; 1)</code>，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。</li>
+<li>ArrayList中最重要的属性就是elementData数组和size，elementData数组由transient修饰，可以防止自动序列化，因此它实现了readObject和writeObject自定义序列化方法</li>
+<li>Vector底层也是一个动态数组维护，但是它是线程安全的容器类，它的所有方法都是使用synchronize关键字修饰的，所以它的性能非常之差，所以它是一个同步容器而不是一个并发容器。</li>
+<li>CopyOnWriteArrayList写入时复制容器，写入时复制的思想：简单来说，就是平时查询的时候，都不需要加锁，随便访问，只有在写入/删除的时候，才会从原来的数据复制一个副本出来，然后修改这个副本，最后把原数据替换成当前的副本。修改操作的同时，读操作不会被阻塞，而是继续读取旧的数据。</li>
+<li>CopyOnWriteArrayList的缺点就是修改中时读取的是旧数据，假如读写频繁就会读到脏数据，而且频繁的替换对象，会消耗大量内存。</li>
+<li>Collections.synchronizedList()方法可以将一个ArrayList结构转换成线程安全的数据结构，它实现是利用了synchronize代码块锁住了一个Object对象，所有的操作都使用同步代码块<a id="more"></a>
+2、HashMap，HashSet，Hashtable，ConcurrentHashMap，TreeMap</li>
+<li>HashMap散列表结构，底层实现利用数组加链表实现，java8以后使用数组加链表/红黑树，增加了hash冲突情况下的数据查找效率，初始容量默认为16，如果需要自定义初始容量，必须要是2的幂数，因为根据它的hash规则，如果不是2的幂，数组中的某些位置会被浪费，会大大增加hash冲突的概率。</li>
+<li>fail-fast机制，HashMap是非线程安全的，当在使用迭代器的时候有其他线程修改Map，就会抛出ConcurrentModificationException，当然，当前线程的修改也会导致这个异常</li>
+<li>Hashtable实现也是数组，但是它的数组的默认初始容量是11，这个等他的计算索引的方式相关</li>
+<li>HashMap计算索引的方式是h&amp;(length-1)，而HashTable用的是模运算，效率上是低于HashMap的</li>
+<li>HashTable每次扩容都是旧容量的2倍加2</li>
+<li>HashMap的在实现resize()时，新table[]列表采用LIFO方式，即队头插入，这样做的目的是避免尾部遍历。<br>尾部遍历是为了避免在新列表插入数据时，遍历队尾的位置。因为直接插入的效率更高</li>
+<li>HashMap页可以使用Collections.synchronizedMap()这个方法变成线程安全的类，但是效率依然不高</li>
+</ul>
+</blockquote>
+<p>介绍效率比较高，而且线程安全的散列表结构ConcurrentHashMap</p>
+<blockquote>
+<ul>
+<li>基础结构与HashMap一样</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>jdk1.7下<br>Segment（分段锁）类，它继承自ReentrantLock。<br>ConcurrentHashMap使用分段锁技术，将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问，能够实现真正的并发访问</li>
+<li>坏处是这一种结构的带来的副作用是Hash的过程要比普通的HashMap要长</li>
+<li>好处是写操作的时候可以只对元素所在的Segment进行加锁即可，不会影响到其他的Segment，这样，在最理想的情况下，ConcurrentHashMap可以最高同时支持Segment数量大小的写操作（刚好这些写操作都非常平均地分布在所有的Segment上）。</li>
+<li>jdk1.8<br>JDK8中彻底放弃了Segment转而采用的是Node，其设计思想也不再是JDK1.7中的分段锁思想。<br>Node：保存key，value及key的hash值的数据结构。其中value和next都用volatile修饰，保证并发的可见性。<br>CAS+Synchronized保证线程安全</li>
+</ul>
+</blockquote>
+<p>至于HashSet</p>
+<blockquote>
+<ul>
+<li>使用过它的都知道，这个容器类可以存唯一的值，重复插入的会被覆盖，其实HashSet底层实现就是一个HashMap，插入的值就是它的key，value值是一个唯一的PRESENT，我们都知道HashMap中是没有重复的key的，原因是不同的值计算出来的hashcode值不同。</li>
+<li>也可以使用Collections.synchronizedSet()方法来将它变成一个线程安全的容器类</li>
+</ul>
+</blockquote>
+<p>TreeMap</p>
+<blockquote>
+<ul>
+<li>一种有序的散列表容器，它的实现是利用了红黑树的数据结构，所以它是有序的，它是非线程安全的，我们知道红黑树的查找效率很高(O(lgn))，所以TreeMap继承了这个特性</li>
+</ul>
+</blockquote>
+<p>3、LinkedHashMap，LinkedHashSet</p>
+<blockquote>
+<ul>
+<li>LinkedHashMap它的实现是继承于HashMap，由一个双向链表构成</li>
+<li>它是有序的，默认顺序为插入顺序，还有一种顺序是根据访问顺序将访问后数据放到链表尾部，想要使用这种排序需要在构造器中传入true，默认为false</li>
+<li>LinkedHashMap以HashMap结构保存数据结构，一个LinkedList保存数据的插入顺序</li>
+<li>利用LinkedHashMap的特性可以实现LRU算法</li>
+</ul>
+</blockquote>
+<p>4、SparseArray，ArrayMap，SparseBooleanArray等</p>
+<blockquote>
+<ul>
+<li>这几个都是Android才有的容器类</li>
+<li>SparseArray很简单粗暴，利用Int作为key。它保存两个数组，一个是Int类型的key数组，一个是Object类型的value数组，加入数据是先用二分查找去查找是否在key数组已经存在有这个相同的key，没有就新增，有就返回对应value的在数组中下标，然后替换，这个数据类的缺点是增删改查都会使用二分查找，不适用存储大量数据</li>
+<li>ArrayMap和SparseArray类似，区别是它使用hash值存储在key数组中的，SparseArray是直接存储int在key数组中，缺点也是查找效率没HashMap高，它主要是提高内存效率。</li>
+</ul>
+</blockquote>
+
       
     </div>
     
@@ -717,160 +452,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2018/04/01/next/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zufeng Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/hg.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白天还是黑夜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/01/next/" itemprop="url">Hexo之NexT主题搭建博客踩过的坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T15:39:31+08:00">
-                2018-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p><div><br>    <center><br>        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=863046037&auto=0&height=66"></iframe><br>    </center><br></div><br>hexo+github搭建博客，自己也是拾前人牙慧，花了一天时间解决各种问题，本来很简单的问题也是在摸索中花费了大量时间，想起来就很搞笑，不过到底是解决了，好了，想要去看比较详细的过程就去: <a href="http://volcfamily.cn/2016/10/03/Hexo%E4%B9%8BNexT%E4%B8%BB%E9%A2%98%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">VOLC</a>这个博客吧，写的够详细了，下面写我踩过的坑吧。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/01/next/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/05/android1/" rel="next" title="Android的零碎知识点">
+                <i class="fa fa-chevron-left"></i> Android的零碎知识点
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/25/volatile/" rel="prev" title="volatile关键字">
+                volatile关键字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -880,14 +495,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -895,6 +507,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1147,6 +763,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

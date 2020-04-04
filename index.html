@@ -430,6 +430,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2020/02/04/collection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zufeng Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/hg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白天还是黑夜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/04/collection/" itemprop="url">Java中的容器类和Android的特有的容器类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T15:08:28+08:00">
+                2020-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList</p>
+<blockquote>
+<ul>
+<li>ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是<code>oldCapacity + (oldCapacity &gt;&gt; 1)</code>，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。</li>
+<li>ArrayList中最重要的属性就是elementData数组和size，elementData数组由transient修饰，可以防止自动序列化，因此它实现了readObject和writeObject自定义序列化方法</li>
+<li>Vector底层也是一个动态数组维护，但是它是线程安全的容器类，它的所有方法都是使用synchronize关键字修饰的，所以它的性能非常之差，所以它是一个同步容器而不是一个并发容器。</li>
+<li>CopyOnWriteArrayList写入时复制容器，写入时复制的思想：简单来说，就是平时查询的时候，都不需要加锁，随便访问，只有在写入/删除的时候，才会从原来的数据复制一个副本出来，然后修改这个副本，最后把原数据替换成当前的副本。修改操作的同时，读操作不会被阻塞，而是继续读取旧的数据。</li>
+<li>CopyOnWriteArrayList的缺点就是修改中时读取的是旧数据，假如读写频繁就会读到脏数据，而且频繁的替换对象，会消耗大量内存。</li>
+<li>Collections.synchronizedList()方法可以将一个ArrayList结构转换成线程安全的数据结构，它实现是利用了synchronize代码块锁住了一个Object对象，所有的操作都使用同步代码块</li></ul></blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/04/collection/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2020/01/05/android1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1512,153 +1644,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/04/23/android/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zufeng Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/hg.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白天还是黑夜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/23/android/" itemprop="url">Android事件分发机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T20:00:34+08:00">
-                2019-04-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>View的事件分发机制是解决滑动冲突的基础。<br>首先要理解两个概念，<code>View</code>和<code>ViewGroup</code>，控件如<code>Button</code>，<code>TexiView</code>，<code>ImageView</code>等都继承自<code>View</code>父类，布局如<code>LinerLayout</code>，<code>RelativeLayout</code>等都继承自<code>ViewGroup</code>。那怎么理解这两个东西呢？我们可以将整个Activity页面看做一个容器，所有的控件（View）都装在这个容器（ViewGroup）里。</p>
-<p>首先我们先说下结论，Android中Touch事件的传递绝对都是先到ViewGroup，然后在到View，所以无论点击了哪个控件都会先调用所在布局的<code>dispatchTouchEvent</code>方法，<br>如果没有被消费掉就会向下传递到控件的dispatchTouchEvent方法。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/23/android/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1713,7 +1698,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1735,7 +1720,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
