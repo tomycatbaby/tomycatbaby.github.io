@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="白天还是黑夜">
 <meta property="og:description" content="1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList   ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1)，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。 ArrayList中最">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-04T07:09:50.160Z">
+<meta property="og:updated_time" content="2020-05-13T02:08:08.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的容器类和Android的特有的容器类">
 <meta name="twitter:description" content="1、ArrayList，Vector，CopyOnWriteArrayList和Collections.SynchronizedList   ArrayList是底层是一个动态数组维护的，数组的初始大小是10，每次扩容是oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1)，也即是原来的1.5倍，当添加一个数据之后数组可能越界就会扩容。支持插入空数据。 ArrayList中最">
@@ -383,7 +383,12 @@
 <li>CopyOnWriteArrayList写入时复制容器，写入时复制的思想：简单来说，就是平时查询的时候，都不需要加锁，随便访问，只有在写入/删除的时候，才会从原来的数据复制一个副本出来，然后修改这个副本，最后把原数据替换成当前的副本。修改操作的同时，读操作不会被阻塞，而是继续读取旧的数据。</li>
 <li>CopyOnWriteArrayList的缺点就是修改中时读取的是旧数据，假如读写频繁就会读到脏数据，而且频繁的替换对象，会消耗大量内存。</li>
 <li>Collections.synchronizedList()方法可以将一个ArrayList结构转换成线程安全的数据结构，它实现是利用了synchronize代码块锁住了一个Object对象，所有的操作都使用同步代码块<a id="more"></a>
-2、HashMap，HashSet，Hashtable，ConcurrentHashMap，TreeMap</li>
+</li>
+</ul>
+</blockquote>
+<p>2、HashMap，HashSet，Hashtable，ConcurrentHashMap，TreeMap</p>
+<blockquote>
+<ul>
 <li>HashMap散列表结构，底层实现利用数组加链表实现，java8以后使用数组加链表/红黑树，增加了hash冲突情况下的数据查找效率，初始容量默认为16，如果需要自定义初始容量，必须要是2的幂数，因为根据它的hash规则，如果不是2的幂，数组中的某些位置会被浪费，会大大增加hash冲突的概率。</li>
 <li>fail-fast机制，HashMap是非线程安全的，当在使用迭代器的时候有其他线程修改Map，就会抛出ConcurrentModificationException，当然，当前线程的修改也会导致这个异常</li>
 <li>Hashtable实现也是数组，但是它的数组的默认初始容量是11，这个等他的计算索引的方式相关</li>
@@ -551,7 +556,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="内存抖动内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。2、自定义View的onDraw()，onMeasure()方法会多次调用，所以尽量不要在里面创建对象。3、当需要使用大量的B">
-<meta name="keywords" content="Android">
+<meta name="description" content="HashMap散列表是Java中用的最广泛的数据结构之一了，因为其查找数据的时间复杂度为常数级的，而且能够保存唯一key，所以使用起来很顺手。首先分析下它的几个初始属性：12345678910/*结构的核心，一个Node节点类型的数组*/table/*map的大小*/size/*阈值，数组的占用的位置大于等于这个值就开始扩容了*/threshold/*扩容指数*/loadFactor/*修改次数，">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android内存管理之内存抖动、内存泄露、内存溢出">
-<meta property="og:url" content="https://tomycatbaby.github.io/2019/06/02/memory/index.html">
+<meta property="og:title" content="分析HashMap的部分源码">
+<meta property="og:url" content="https://tomycatbaby.github.io/2020/05/14/HashMap/index.html">
 <meta property="og:site_name" content="白天还是黑夜">
-<meta property="og:description" content="内存抖动内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。2、自定义View的onDraw()，onMeasure()方法会多次调用，所以尽量不要在里面创建对象。3、当需要使用大量的B">
+<meta property="og:description" content="HashMap散列表是Java中用的最广泛的数据结构之一了，因为其查找数据的时间复杂度为常数级的，而且能够保存唯一key，所以使用起来很顺手。首先分析下它的几个初始属性：12345678910/*结构的核心，一个Node节点类型的数组*/table/*map的大小*/size/*阈值，数组的占用的位置大于等于这个值就开始扩容了*/threshold/*扩容指数*/loadFactor/*修改次数，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T01:07:37.118Z">
+<meta property="og:updated_time" content="2020-05-14T08:18:36.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android内存管理之内存抖动、内存泄露、内存溢出">
-<meta name="twitter:description" content="内存抖动内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。2、自定义View的onDraw()，onMeasure()方法会多次调用，所以尽量不要在里面创建对象。3、当需要使用大量的B">
+<meta name="twitter:title" content="分析HashMap的部分源码">
+<meta name="twitter:description" content="HashMap散列表是Java中用的最广泛的数据结构之一了，因为其查找数据的时间复杂度为常数级的，而且能够保存唯一key，所以使用起来很顺手。首先分析下它的几个初始属性：12345678910/*结构的核心，一个Node节点类型的数组*/table/*map的大小*/size/*阈值，数组的占用的位置大于等于这个值就开始扩容了*/threshold/*扩容指数*/loadFactor/*修改次数，">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://tomycatbaby.github.io/2019/06/02/memory/"/>
+  <link rel="canonical" href="https://tomycatbaby.github.io/2020/05/14/HashMap/"/>
 
 
 
 
 
-  <title>Android内存管理之内存抖动、内存泄露、内存溢出 | 白天还是黑夜</title>
+  <title>分析HashMap的部分源码 | 白天还是黑夜</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2019/06/02/memory/">
+    <link itemprop="mainEntityOfPage" href="https://tomycatbaby.github.io/2020/05/14/HashMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zufeng Lu">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android内存管理之内存抖动、内存泄露、内存溢出</h1>
+          <h1 class="post-title" itemprop="name headline">分析HashMap的部分源码</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-02T15:19:43+08:00">
-                2019-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T16:12:09+08:00">
+                2020-05-14
               </time>
             
 
@@ -359,8 +359,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -396,28 +396,12 @@
       
 
       
-        <h1 id="内存抖动"><a href="#内存抖动" class="headerlink" title="内存抖动"></a>内存抖动</h1><p>内存抖动的现象就是UI界面的卡顿，出现的原因就是年轻代的频繁GC。JVM的每次年轻代GC都会触发“全世界的暂停（stop-the-world）”，也就会导致卡顿。避免出现内存抖动的几点建议：<br>1、不要在循环体内创建对象，将创建对象放到循环体外，在循环体内重用一个对象。<br>2、自定义View的<code>onDraw()</code>，<code>onMeasure()</code>方法会多次调用，所以尽量不要在里面创建对象。<br>3、当需要使用大量的Bitmap的时候，应该将他们缓存到数组中使用。<br>4、同理，对于有复用的对象，可以用对象池将它缓存起来。<br><a id="more"></a></p>
-<h1 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h1><p>内存溢出意思就是为对象申请不到足够的内存空间了，导致OOM。内存溢出导致的原因可能是内存泄露，也有可能是JVM分配的内存真的不够使用了。在Android手机上，系统为程序最初分配的内存都是一致的，所以开发者尽量不要占用太多的内存空间，没有使用的对象及时置为null。一般情况这种场景是不会出现的，程序员一般只需要关注内存抖动和内存泄露。</p>
-<h1 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h1><p>在Android手机上，内存是很珍贵的，系统为每个应用分配了固定的内存大小，如果申请不到足够的内存空间，就直接导致内存溢出。以前并没有内存泄露的概念，单纯的以为JVM会管理好所有的内存空间，并不需要开发者操心，但事实上不是。内存泄露的根本原因是<code>一个长生命周期的对象持有了一个短生命周期的对象的引用</code>。下面我们来看下Android上面的有哪些内存泄露的风险。</p>
-<blockquote>
-<ul>
-<li>单例模式导致内存泄露，静态对象的生命周期和应用程序一样长，如果持有一个短生命周期如Activity的context就会导致activity无法被回收，所以应该使用getApplicationContext()进行初始化。</li>
-<li>内部Handler如果持有了Activity的强引用，而handler执行没有完成，activity就已经调用onDestory了，就会导致activity无法被回收。</li>
-<li>非静态内部类默认持有外部类对象引用。所以导致外部类销毁时仍然持有外部类引用，导致外部类无法被回收。</li>
-<li>未去注册，如广播，服务，注册或者启动之后必须要去注册</li>
-<li>资源对象未及时释放，如Cursor、Stream、Socket，Bitmap等在使用后要及时关闭。</li>
-<li>集合中的对象要及时clear。</li>
-</ul>
-</blockquote>
-<p>Android Studio会对代码中可能出现内存泄露的地方会给出提示，能够避免很多常见的内存泄露。<br>对于第二种情况的内存泄露，我们一般是使用静态内部类+弱引用的方式去解决，handler不持有activity引用，而是通过弱引用去获得一个弱引用对象。<br>第三种情况有很多例子场景：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//线程匿名内部类</span><br><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">new AsyncTask&lt;Void, Void, Void&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected Void doInBackground(Void... params) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(2000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.execute();</span><br><span class="line">//线程写成静态内部类</span><br><span class="line">private static class MyThread implements Runnable &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        SystemClock.sleep(20000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Android关于内存的最佳实践</p>
-<blockquote>
-<ul>
-<li>Enum非常占用内存，因为枚举类型的每个属性值都是Object，每声明一个值都会创建内存以便能引用到这个对象，Android中使用@IntDef、@StringDef来替代枚举类型的使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Java 的 Enum 的实质是特殊单例的静态成员变量</span><br><span class="line">Enum 可以在编写器，编译器做到各种静态检查防呆</span><br><span class="line">Enum 在运行期，所有枚举类作为单例，全部加载到内存中</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>内存泄露是非常容易出现的，上面只是一些大多数场景，还有很多需要注意的地方，特别是一些框架、组件这样的内存泄露很容易忽视。查找内存泄露的方式也很多，如<code>LeakCanary</code>，还有<code>Android Studio3.0</code>自带的<br><code>Android Profiler</code>，熟练使用这些工具能够快速的帮助自己定位内存泄露，提高程序的性能。</p>
+        <p>HashMap散列表是Java中用的最广泛的数据结构之一了，因为其查找数据的时间复杂度为常数级的，而且能够保存唯一key，所以使用起来很顺手。<br>首先分析下它的几个初始属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*结构的核心，一个Node节点类型的数组*/</span><br><span class="line">table</span><br><span class="line">/*map的大小*/</span><br><span class="line">size</span><br><span class="line">/*阈值，数组的占用的位置大于等于这个值就开始扩容了*/</span><br><span class="line">threshold</span><br><span class="line">/*扩容指数*/</span><br><span class="line">loadFactor</span><br><span class="line">/*修改次数，按照注释看，这个值在remove，put操作后都会加1。HashMap的迭代器是fail-fast，用来保证遍历过程中不允许修改map，这个参数在迭代器为fail-fast的类中都存在。*/</span><br><span class="line">modCount;</span><br></pre></td></tr></table></figure></p>
+<p>使用无参构造器初始化HashMap，就会使用默认的数组大小1&gt;&gt;4,扩容指数0.75，阈值就是12<br>先看看向HashMap中插入节点的代码：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">                  boolean evict) &#123;</span><br><span class="line">       Node&lt;K,V&gt;[] tab;</span><br><span class="line">       Node&lt;K,V&gt; p;</span><br><span class="line">       int n, i;</span><br><span class="line">       if ((tab = table) == null || (n = tab.length) == 0)</span><br><span class="line">           n = (tab = resize()).length;//HashMap还没有初始化的话，在这里初始化</span><br><span class="line">       if ((p = tab[i = (n - 1) &amp; hash]) == null)//如果当前数组位置没有元素，直接放进下标为i的数组位置</span><br><span class="line">           tab[i] = newNode(hash, key, value, null);//</span><br><span class="line">       else &#123; //当前数组位置是存在元素的时候</span><br><span class="line">           Node&lt;K,V&gt; e;</span><br><span class="line">           K k;</span><br><span class="line">           if (p.hash == hash &amp;&amp;</span><br><span class="line">               ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">               e = p;//当前node的key已经存在，就直接替换</span><br><span class="line">           else if (p instanceof TreeNode)//红黑树执行红黑树的插入操作</span><br><span class="line">               e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);</span><br><span class="line">           else &#123;</span><br><span class="line">               for (int binCount = 0; ; ++binCount) &#123;//不是红黑树就是链表了，向链表插入节点</span><br><span class="line">                   if ((e = p.next) == null) &#123;</span><br><span class="line">                       p.next = newNode(hash, key, value, null);</span><br><span class="line">                       if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st量表长度为8的时候就开始红黑树转换了</span><br><span class="line">                           treeifyBin(tab, hash);//这个方法是将链表转换成红黑树</span><br><span class="line">                       break;</span><br><span class="line">                   &#125;</span><br><span class="line">                   if (e.hash == hash &amp;&amp;//遍历链表发现要插入的元素的key是已经存在了</span><br><span class="line">                       ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">                       break;</span><br><span class="line">                   p = e;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           if (e != null) &#123; // existing mapping for key 这里处理key存在的所有情况，更新这个节点</span><br><span class="line">               V oldValue = e.value;</span><br><span class="line">               if (!onlyIfAbsent || oldValue == null)</span><br><span class="line">                   e.value = value;</span><br><span class="line">               afterNodeAccess(e);</span><br><span class="line">               return oldValue;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       ++modCount;//插入了新节点，大小加1</span><br><span class="line">       if (++size &gt; threshold)//threshold = loadFactor*initialCapacity 阈值</span><br><span class="line">           resize();//数组扩容</span><br><span class="line">       afterNodeInsertion(evict);</span><br><span class="line">       return null;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入过程中如果出现扩容的扩容方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">final Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">     Node&lt;K,V&gt;[] oldTab = table;//赋值给老的数组</span><br><span class="line">     int oldCap = (oldTab == null) ? 0 : oldTab.length;//老数组的长度</span><br><span class="line">     int oldThr = threshold;//现在的临界点</span><br><span class="line">     int newCap, newThr = 0;</span><br><span class="line">     if (oldCap &gt; 0) &#123;//原先数组已经初始化了</span><br><span class="line">         if (oldCap &gt;= MAXIMUM_CAPACITY) &#123;//原先表的长度已经大于等于2的30次方了</span><br><span class="line">             threshold = Integer.MAX_VALUE;//则将临界点定为int的最大值,就是2147483647，数组并不扩容</span><br><span class="line">             return oldTab;//返回</span><br><span class="line">         &#125;</span><br><span class="line">         else if ((newCap = oldCap &lt;&lt; 1) &lt; MAXIMUM_CAPACITY &amp;&amp;//如果当前数组的长度的2倍小于2的30次方，</span><br><span class="line">                 // 且数组长度大于等于初始化长度16，则新临界点翻倍</span><br><span class="line">                  oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">             newThr = oldThr &lt;&lt; 1; // double threshold</span><br><span class="line">     &#125;</span><br><span class="line">     else if (oldThr &gt; 0) // initial capacity was placed in threshold  老的临界点是大于0，则给数组长度赋为临界点的长度</span><br><span class="line">         newCap = oldThr;</span><br><span class="line">     else &#123;               // zero initial threshold signifies using defaults</span><br><span class="line">         newCap = DEFAULT_INITIAL_CAPACITY; //如果数组没有初始化，临界点页没有初始化，那么数组长度和临界点都赋为默认值</span><br><span class="line">         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">     &#125;</span><br><span class="line">     if (newThr == 0) &#123;//新临界点为0，则重新为他赋值</span><br><span class="line">         float ft = (float)newCap * loadFactor;</span><br><span class="line">         newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (float)MAXIMUM_CAPACITY ?</span><br><span class="line">                   (int)ft : Integer.MAX_VALUE);</span><br><span class="line">     &#125;</span><br><span class="line">     threshold = newThr;</span><br><span class="line">     @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br><span class="line">         Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])new Node[newCap];//建立一个新表，新表的长度为新的数组长度</span><br><span class="line">     table = newTab;//新数组赋给到类属性中</span><br><span class="line">     if (oldTab != null) &#123;</span><br><span class="line">         for (int j = 0; j &lt; oldCap; ++j) &#123;//遍历老的数组</span><br><span class="line">             Node&lt;K,V&gt; e;</span><br><span class="line">             if ((e = oldTab[j]) != null) &#123;</span><br><span class="line">                 oldTab[j] = null;//将老的数组位置中的node赋给e这个对象，然后将数组的这个位置置空</span><br><span class="line">                 if (e.next == null)//如果这个e节点只是一个单节点，并不存在后续节点，那么直接计算出它在新数组中的位置，然后赋到新数组中</span><br><span class="line">                     newTab[e.hash &amp; (newCap - 1)] = e;</span><br><span class="line">                 else if (e instanceof TreeNode)//如果这个节点已经是红黑树节点(红黑树节点是继承了Node类的，所以是它的子类)了</span><br><span class="line">                     ((TreeNode&lt;K,V&gt;)e).split(this, newTab, j, oldCap);</span><br><span class="line">                 else &#123; // preserve order</span><br><span class="line">                     Node&lt;K,V&gt; loHead = null, loTail = null;</span><br><span class="line">                     Node&lt;K,V&gt; hiHead = null, hiTail = null;</span><br><span class="line">                     Node&lt;K,V&gt; next;</span><br><span class="line">                     do &#123;//遍历链表</span><br><span class="line">                         next = e.next;</span><br><span class="line">                         if ((e.hash &amp; oldCap) == 0) &#123;//后面有两块代码，一块是选出位于老的位置的node ---&gt;loHead，一块是选出位于新的位置的node --&gt;hiHead</span><br><span class="line">                             if (loTail == null)//如何算出老的位置，（e.hash &amp; oldCap) == 0</span><br><span class="line">                                 loHead = e;</span><br><span class="line">                             else</span><br><span class="line">                                 loTail.next = e;</span><br><span class="line">                             loTail = e;</span><br><span class="line">                         &#125;</span><br><span class="line">                         else &#123;</span><br><span class="line">                             if (hiTail == null)</span><br><span class="line">                                 hiHead = e;</span><br><span class="line">                             else</span><br><span class="line">                                 hiTail.next = e;</span><br><span class="line">                             hiTail = e;</span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125; while ((e = next) != null);</span><br><span class="line">                     if (loTail != null) &#123;</span><br><span class="line">                         loTail.next = null;</span><br><span class="line">                         newTab[j] = loHead;//赋到老的数组的位置</span><br><span class="line">                     &#125;</span><br><span class="line">                     if (hiTail != null) &#123;</span><br><span class="line">                         hiTail.next = null;</span><br><span class="line">                         newTab[j + oldCap] = hiHead;//新增的数组的位置</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return newTab;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>从map中取值的方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">final Node&lt;K,V&gt; getNode(int hash, Object key) &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; //数组</span><br><span class="line">    Node&lt;K,V&gt; first, e; //first是hash值计算出来的数组位置节点</span><br><span class="line">    int n; //数组长度</span><br><span class="line">    K k;//key</span><br><span class="line">    if ((tab = table) != null &amp;&amp; (n = tab.length) &gt; 0 &amp;&amp;</span><br><span class="line">        (first = tab[(n - 1) &amp; hash]) != null) &#123;</span><br><span class="line">        if (first.hash == hash &amp;&amp; // always check first node</span><br><span class="line">            ((k = first.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">            return first; //如果头结点是要找的那个就直接返回</span><br><span class="line">        if ((e = first.next) != null) &#123;//没找到就继续链表下寻找</span><br><span class="line">            if (first instanceof TreeNode)//判断是否是红黑树，如果是就执行红黑树的查找</span><br><span class="line">                return ((TreeNode&lt;K,V&gt;)first).getTreeNode(hash, key);</span><br><span class="line">            do &#123;//普通链表的向下查找</span><br><span class="line">                if (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">                    return e;</span><br><span class="line">            &#125; while ((e = e.next) != null);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从map中删除元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">final Node&lt;K,V&gt; removeNode(int hash, Object key, Object value,</span><br><span class="line">                           boolean matchValue, boolean movable) &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab;</span><br><span class="line">    Node&lt;K,V&gt; p; //当前table中的节点</span><br><span class="line">    int n, index;</span><br><span class="line">    if ((tab = table) != null &amp;&amp; (n = tab.length) &gt; 0 &amp;&amp;</span><br><span class="line">        (p = tab[index = (n - 1) &amp; hash]) != null) &#123;//表不为空，且当前数组位置不为空</span><br><span class="line">        Node&lt;K,V&gt; node = null, e;</span><br><span class="line">        K k;</span><br><span class="line">        V v;</span><br><span class="line">        if (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))//数组位置的元素刚好是需要移除的key</span><br><span class="line">            node = p;</span><br><span class="line">        else if ((e = p.next) != null) &#123;//后续节点不为空</span><br><span class="line">            if (p instanceof TreeNode)</span><br><span class="line">                node = ((TreeNode&lt;K,V&gt;)p).getTreeNode(hash, key);//红黑树节点就从中取出节点</span><br><span class="line">            else &#123;</span><br><span class="line">                do &#123;</span><br><span class="line">                    if (e.hash == hash &amp;&amp;</span><br><span class="line">                        ((k = e.key) == key ||</span><br><span class="line">                         (key != null &amp;&amp; key.equals(k)))) &#123;//是链表的话就遍历找出节点</span><br><span class="line">                        node = e;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    p = e;</span><br><span class="line">                &#125; while ((e = e.next) != null);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (node != null &amp;&amp; (!matchValue || (v = node.value) == value ||</span><br><span class="line">                             (value != null &amp;&amp; value.equals(v)))) &#123;//value如果匹配，但是key不匹配也是可以删除的</span><br><span class="line">            if (node instanceof TreeNode)</span><br><span class="line">                ((TreeNode&lt;K,V&gt;)node).removeTreeNode(this, tab, movable);//从红黑树中删除</span><br><span class="line">            else if (node == p)</span><br><span class="line">                tab[index] = node.next;//删除链表头节点，后续节点放到数组相应位置</span><br><span class="line">            else</span><br><span class="line">                p.next = node.next;//不是头结点，直接从链表中删除</span><br><span class="line">            ++modCount;</span><br><span class="line">            --size;</span><br><span class="line">            afterNodeRemoval(node);</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>HashMap散列表结构用处很广泛，Set数据结构的底层全是利用它实现的，它不存在重复的key，用起来很顺手，去重很方面，而且1.8优化之后的HashMap查找的效率更高了，但是它不是线程安全的。使用线程安全的结构建议使用ConcurrentHashMap，虽然有其他的线程安全的散列表，但是相对应效率低，不建议使用。</p>
 
       
     </div>
@@ -435,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -448,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/09/androidThread/" rel="next" title="Android有哪些处理耗时任务的方式">
-                <i class="fa fa-chevron-left"></i> Android有哪些处理耗时任务的方式
+              <a href="/2020/03/25/volatile/" rel="next" title="volatile关键字">
+                <i class="fa fa-chevron-left"></i> volatile关键字
               </a>
             
           </div>
@@ -457,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/14/label/" rel="prev" title="Android标签">
-                Android标签 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -618,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存抖动"><span class="nav-number">1.</span> <span class="nav-text">内存抖动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存溢出"><span class="nav-number">2.</span> <span class="nav-text">内存溢出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄露"><span class="nav-number">3.</span> <span class="nav-text">内存泄露</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
